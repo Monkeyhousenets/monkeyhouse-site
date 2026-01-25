@@ -29,6 +29,11 @@ body {
   backdrop-filter: blur(6px);
   border-bottom: 1px solid rgba(0,0,0,.08);
 }
+.logo-img{
+  height: 34px;
+  width: auto;
+  display: block;
+}
 .topbar-inner{
   max-width: 1200px;
   margin: 0 auto;
@@ -109,6 +114,12 @@ body {
   background-size: cover;
   background-position: center;
   position: relative;
+}
+.hero-logo{
+  width: min(900px, 92vw);
+  height: auto;
+  display: block;
+  filter: drop-shadow(0 10px 22px rgba(0,0,0,.55));
 }
 
 .hero-overlay{
