@@ -45,6 +45,13 @@ body {
   transform: translateY(-1px) scale(1.03);
   filter: drop-shadow(0 6px 14px rgba(0,0,0,.35));
 }
+.logo{
+  cursor: pointer;
+}
+
+.logo:active .logo-img{
+  transform: scale(.98);
+}
 
 .topbar-inner{
   max-width: 1200px;
