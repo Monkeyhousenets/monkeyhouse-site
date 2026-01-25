@@ -139,6 +139,7 @@ body {
   width: min(900px, 92vw);
   height: auto;
   display: block;
+  transform: translateY(-18px); /* move logo UP */
   filter: drop-shadow(0 10px 22px rgba(0,0,0,.55));
 }
 
