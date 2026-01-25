@@ -29,11 +29,23 @@ body {
   backdrop-filter: blur(6px);
   border-bottom: 1px solid rgba(0,0,0,.08);
 }
+
 .logo-img{
-  height: 68px;
+  height: 56px;           /* mobile / default */
   width: auto;
   display: block;
+  transition: transform .25s ease, filter .25s ease;
 }
+@media (min-width: 980px){
+  .logo-img{
+    height: 78px;         /* desktop */
+  }
+}
+.logo:hover .logo-img{
+  transform: translateY(-1px) scale(1.03);
+  filter: drop-shadow(0 6px 14px rgba(0,0,0,.35));
+}
+
 .topbar-inner{
   max-width: 1200px;
   margin: 0 auto;
