@@ -1,90 +1,234 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Monkeyhouse Treenets & Furniture | Handwoven Play & Relaxation</title>
-<meta name="description" content="Elevate your space with handcrafted treenets and furniture. Safety, beauty, and fun intertwined—custom treenets by Monkeyhouse.">
-<link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Monkeyhouse Treenets | Custom Tree Net Installations</title>
+  <meta name="description" content="Custom hand-woven treenets for play, lounging, and adventure. Designed for safety, built to last." />
+  <meta name="robots" content="index,follow" />
+  <link rel="canonical" href="https://www.monkeyhousenets.com/" />
+
+  <!-- Social share -->
+  <meta property="og:title" content="Monkeyhouse Treenets" />
+  <meta property="og:description" content="Custom hand-woven treenets for play, lounging, and adventure." />
+  <meta property="og:type" content="website" />
+
+  <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
+  <a class="skip" href="#main">Skip to content</a>
 
-<header class="top-section">
-  <div class="container">
-    <h1>Monkeyhouse Treenets & Furniture</h1>
-    <p>Unparalleled Play & Comfort in the Trees.</p>
-    <a href="#contact" class="btn-primary">Get a Net</a>
-  </div>
-</header>
+  <header class="header">
+    <div class="container nav">
+      <div class="brand">
+        <span class="logo">🐒</span>
+        <span class="brandtext">Monkeyhouse</span>
+      </div>
 
-<section id="about" class="section section-light">
-  <div class="container">
-    <h2>Unleash Your Inner Adventurer</h2>
-    <p>Imagine a dynamic space in the trees — bouncy like trampolines, loungy like hammocks, and comfy like your favorite couch. Our treenets make your outdoor space playful, relaxing, and unforgettable.</p>
-    <a href="#gallery" class="btn-secondary">Visit Gallery</a>
-  </div>
-</section>
+      <nav class="links" aria-label="Primary">
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#safety">Safety</a>
+        <a href="#gallery">Gallery</a>
+        <a class="btn small" href="#contact">Get a Quote</a>
+      </nav>
 
-<section id="craftsmanship" class="section section-dark">
-  <div class="container">
-    <h2>The Art of Hand-Woven Excellence</h2>
-    <p>Each piece is a masterpiece of craftsmanship. Our skilled artisans weave treenets and furniture that blend seamlessly with nature, turning your space into a haven of creativity and comfort.</p>
-  </div>
-</section>
-
-<section id="services" class="section section-light">
-  <div class="container">
-    <h2>Products & Services</h2>
-    <ul>
-      <li>Custom treenets for homes & businesses</li>
-      <li>Hand-woven net furniture</li>
-      <li>Installation & safety consultation</li>
-    </ul>
-  </div>
-</section>
-
-<section id="safety" class="section section-dark">
-  <div class="container">
-    <h2>Safety First, Always</h2>
-    <p>Safety is our highest value. Our treenets and furniture are crafted from top-rated materials, including nylon static rope and paracord, to make your experience thrilling *and* secure.</p>
-  </div>
-</section>
-
-<section id="gallery" class="section section-light">
-  <div class="container">
-    <h2>Gallery</h2>
-    <p>Photos coming soon — showcase your work or favorite builds!</p>
-    <!-- Placeholder images -->
-    <div class="gallery-grid">
-      <div class="gallery-item">Image 1</div>
-      <div class="gallery-item">Image 2</div>
-      <div class="gallery-item">Image 3</div>
+      <button class="menu" aria-label="Open menu" aria-expanded="false">Menu</button>
     </div>
-  </div>
-</section>
 
-<section id="contact" class="section section-dark">
-  <div class="container">
-    <h2>Contact Us</h2>
-    <p>Call or message us to get your custom treenet started:</p>
-    <p><strong>Phone:</strong> (512) 591-8835</p>
-    <p><strong>Email:</strong> <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a></p>
+    <div class="container hero" id="main">
+      <div class="heroText">
+        <p class="kicker">Custom treenets • Installation • Safety-first</p>
+        <h1>Play, lounge, and explore — <span class="accent">in the trees</span>.</h1>
+        <p class="lead">
+          Hand-woven treenets that feel like a trampoline, hammock, and couch all in one.
+          Built with static rope perimeters and woven paracord surfaces.
+        </p>
 
-    <form class="contact-form">
-      <input type="text" name="name" placeholder="Your Name" required>
-      <input type="email" name="email" placeholder="Your Email" required>
-      <textarea name="message" placeholder="Your Message" rows="4" required></textarea>
-      <button type="submit" class="btn-primary">Send Message</button>
-    </form>
-  </div>
-</section>
+        <div class="ctaRow">
+          <a class="btn" href="#contact">Request a Quote</a>
+          <a class="btn ghost" href="#gallery">See Builds</a>
+        </div>
 
-<footer class="footer">
-  <div class="container">
-    <p>&copy; 2026 Monkeyhouse Treenets. All Rights Reserved.</p>
-  </div>
-</footer>
+        <div class="trust">
+          <div class="pill">Austin-area installs</div>
+          <div class="pill">Custom fit to your trees</div>
+          <div class="pill">Durable materials</div>
+        </div>
+      </div>
 
+      <div class="heroCard" aria-label="Quick contact">
+        <h2>Let’s build yours</h2>
+        <p class="muted">Tell me about your trees + the size you’re imagining.</p>
+
+        <!-- Netlify form -->
+        <form name="contact" method="POST" data-netlify="true" class="form">
+          <input type="hidden" name="form-name" value="contact" />
+          <label>
+            <span>Name</span>
+            <input name="name" autocomplete="name" required />
+          </label>
+          <label>
+            <span>Email</span>
+            <input name="email" type="email" autocomplete="email" required />
+          </label>
+          <label>
+            <span>Message</span>
+            <textarea name="message" rows="4" required placeholder="Tree spacing, desired size, location, timeline…"></textarea>
+          </label>
+          <button class="btn full" type="submit">Send</button>
+          <p class="tiny muted">Or email <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a></p>
+        </form>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section id="about" class="section">
+      <div class="container grid2">
+        <div>
+          <h2>Unleash your inner adventurer</h2>
+          <p>
+            Treenets create a dynamic space that’s bouncy like a trampoline and loungy like a hammock.
+            Every build is custom — designed to fit your trees and your goals for the space.
+          </p>
+          <ul class="check">
+            <li>Custom design + install</li>
+            <li>Comfortable, hand-woven surface</li>
+            <li>Built to handle real use</li>
+          </ul>
+        </div>
+
+        <div class="card">
+          <h3>How it works</h3>
+          <ol class="steps">
+            <li><strong>Measure</strong> the trees + pick a shape/size.</li>
+            <li><strong>Build</strong> the net to spec (hand-woven).</li>
+            <li><strong>Install</strong> with safety checks + tensioning.</li>
+          </ol>
+          <a class="btn ghost full" href="#contact">Start a quote</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="services" class="section alt">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Products & services</h2>
+          <p class="muted">Custom work for homes, rentals, and outdoor spaces.</p>
+        </div>
+
+        <div class="cards3">
+          <article class="card">
+            <h3>Custom Treenets</h3>
+            <p>Designed to fit your tree layout, height preferences, and intended use.</p>
+          </article>
+          <article class="card">
+            <h3>Installation</h3>
+            <p>Secure mounting, proper tensioning, and a walkthrough of safe use.</p>
+          </article>
+          <article class="card">
+            <h3>Consultation</h3>
+            <p>Not sure what’s possible? We’ll map options and recommend a build.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="safety" class="section">
+      <div class="container grid2">
+        <div>
+          <h2>Safety first, always</h2>
+          <p>
+            Safety drives every design decision — from materials to attachment and tensioning.
+            We use proven rope and weaving approaches for strength and comfort.
+          </p>
+          <div class="note">
+            <strong>Tip:</strong> If you have an HOA or property rules, coordinate approvals before scheduling installation.
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Materials (typical)</h3>
+          <ul class="bullets">
+            <li>Static rope perimeter</li>
+            <li>Woven paracord surface</li>
+            <li>Hardware selected for the installation site</li>
+          </ul>
+          <p class="tiny muted">Final specs depend on project requirements and site conditions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="gallery" class="section alt">
+      <div class="container">
+        <div class="sectionHead">
+          <h2>Gallery</h2>
+          <p class="muted">Replace these placeholders with your real photos.</p>
+        </div>
+
+        <div class="gallery">
+          <div class="ph">Project photo</div>
+          <div class="ph">Project photo</div>
+          <div class="ph">Project photo</div>
+          <div class="ph">Project photo</div>
+          <div class="ph">Project photo</div>
+          <div class="ph">Project photo</div>
+        </div>
+
+        <div class="center">
+          <a class="btn" href="#contact">Get pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="contact" class="section">
+      <div class="container contact">
+        <div>
+          <h2>Contact</h2>
+          <p class="lead2">
+            Ready to build a treenet? Send a note with your location, tree spacing, and the size you want.
+          </p>
+          <div class="contactBox">
+            <div><strong>Email:</strong> <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <h3>Quick quote request</h3>
+          <form name="contact-bottom" method="POST" data-netlify="true" class="form">
+            <input type="hidden" name="form-name" value="contact-bottom" />
+            <label><span>Name</span><input name="name" required /></label>
+            <label><span>Email</span><input name="email" type="email" required /></label>
+            <label><span>Message</span><textarea name="message" rows="5" required></textarea></label>
+            <button class="btn full" type="submit">Send</button>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container foot">
+        <div class="brand small">
+          <span class="logo">🐒</span>
+          <span class="brandtext">Monkeyhouse Treenets</span>
+        </div>
+        <p class="tiny muted">© <span id="y"></span> Monkeyhouse. All rights reserved.</p>
+      </div>
+    </footer>
+  </main>
+
+  <script>
+    // year
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // mobile menu
+    const btn = document.querySelector('.menu');
+    const links = document.querySelector('.links');
+    btn?.addEventListener('click', () => {
+      const open = links.classList.toggle('open');
+      btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    });
+  </script>
 </body>
 </html>
-
