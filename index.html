@@ -127,9 +127,21 @@
       </h3>
 
       <!-- Netlify form -->
-      <form name="get-a-net" method="POST" data-netlify="true" class="bigForm" novalidate>
+      <form 
+        name="get-a-net"
+        method="POST"
+        data-netlify="true"
+        data-netlify-honeypot="bot-field"
+        class="bigForm"
+      >
         <input type="hidden" name="form-name" value="get-a-net" />
-
+        <p hidden>
+          <label>
+            Don’t fill this out:
+            <input name="bot-field" />
+          </label>
+        </p>
+        
         <label>Full name
           <input name="full_name" type="text" required />
         </label>
@@ -241,35 +253,41 @@
     <div class="footer-inner">© <span id="y"></span> by monkeyhouse</div>
   </footer>
 
-  <script>
-    document.getElementById("y").textContent = new Date().getFullYear();
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
 
-    const btn = document.querySelector(".menuBtn");
-    const menu = document.getElementById("mobileMenu");
-    btn?.addEventListener("click", () => {
-      const open = menu.classList.toggle("open");
-      btn.setAttribute("aria-expanded", open ? "true" : "false");
-    });
+  const btn = document.querySelector(".menuBtn");
+  const menu = document.getElementById("mobileMenu");
+  btn?.addEventListener("click", () => {
+    const open = menu.classList.toggle("open");
+    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  });
 
-    const netForm = document.querySelector('form[name="get-a-net"]');
+  const netForm = document.querySelector('form[name="get-a-net"]');
 
-    if (netForm) {
-      netForm.addEventListener("submit", (e) => {
-        e.preventDefault();
+  if (netForm) {
+    netForm.addEventListener("submit", (e) => {
+      e.preventDefault();
 
-        const data = new FormData(netForm);
+      const formData = new FormData(netForm);
 
-        fetch("/", {
-          method: "POST",
-          body: data
-        }).then(() => {
-          netForm.style.display = "none";
-          const success = netForm.nextElementSibling;
-          if (success) success.hidden = false;
-        }).catch(() => {
-          alert("Something went wrong. Please try again.");
-        });
+      fetch("/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded"
+        },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        netForm.style.display = "none";
+        const success = netForm.nextElementSibling;
+        if (success) success.hidden = false;
+      })
+      .catch(() => {
+        alert("Something went wrong. Please try again.");
       });
-  </script>
+    });
+  }
+</script>
 </body>
 </html>
