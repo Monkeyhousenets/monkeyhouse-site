@@ -496,6 +496,33 @@ body{
   font-family: inherit;   /* ← THIS is the key line */
   outline: none;
 }
+
+/* Smooth form -> success transition without page jump */
+.formStage{
+  position: relative;
+}
+
+.formStage .bigForm,
+.formStage .formSuccess{
+  transition: opacity .35s ease, transform .35s ease;
+}
+
+.formStage .formSuccess{
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+.formStage.is-sent .bigForm{
+  opacity: 0;
+  transform: translateY(-8px);
+  pointer-events: none;
+}
+
+.formStage.is-sent .formSuccess{
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .bigForm textarea{ resize: vertical; }
 .bigForm select{ appearance: auto; }
 

@@ -186,12 +186,21 @@
         <button class="btn btn-white" type="submit">Send</button>
       </form>
 
-      <div class="formSuccess" hidden>
-        <h3>Thanks — we got your request!</h3>
-        <p>
-          Thanks! We’ll review your info and get back to you shortly.
-          If it’s urgent, feel free to call us.
-        </p>
+      <div class="formStage" id="getanet-stage">
+        <form 
+          name="get-a-net"
+          method="POST"
+          data-netlify="true"
+          data-netlify-honeypot="bot-field"
+          class="bigForm"
+        >
+          ...
+        </form>
+
+        <div class="formSuccess" hidden>
+          <h3>Thanks — we got your request!</h3>
+          <p>We’ll review your info and get back to you shortly.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -296,9 +305,27 @@
         body: new URLSearchParams(formData).toString()
       })
       .then(() => {
-        netForm.style.display = "none";
+        const stage = document.getElementById("getanet-stage");
+        const y = window.scrollY; // lock current scroll position
+
+        if (stage) {
+          // prevent layout collapse (stops page jump)
+          stage.style.minHeight = stage.offsetHeight + "px";
+          stage.classList.add("is-sent");
+        }
+
+        // swap visibility
+        netForm.hidden = true;
         const success = netForm.nextElementSibling;
         if (success) success.hidden = false;
+
+        // restore scroll position after DOM updates
+        requestAnimationFrame(() => window.scrollTo(0, y));
+
+        // optional: release height lock after animation
+        setTimeout(() => {
+          if (stage) stage.style.minHeight = "";
+        }, 400);
       })
       .catch(() => {
         alert("Something went wrong. Please try again.");
