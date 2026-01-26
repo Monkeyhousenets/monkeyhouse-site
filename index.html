@@ -228,8 +228,19 @@
       <div class="contactRight">
         <h3 class="formHeading2">Give us a call or send a message below.</h3>
 
-        <form name="contact" method="POST" data-netlify="true" class="contactForm">
+        <form 
+          name="contact" 
+          method="POST" 
+          data-netlify="true"
+          data-netlify-honeypot="bot-field-contact" 
+          class="contactForm"
+        >
           <input type="hidden" name="form-name" value="contact" />
+            <p hidden>
+              <label>Don’t fill this out:
+                <input name="bot-field-contact" />
+              </label>
+            </p>
 
           <label>Full Name
             <input name="name" type="text" required />
@@ -245,6 +256,11 @@
 
           <button class="btn btn-teal wide" type="submit">Send</button>
         </form>
+
+        <div class="formSuccess" hidden>
+          <h3>Thanks — message sent!</h3>
+            <p>We’ll get back to you shortly.</p>
+        </div>
       </div>
     </div>
   </section>
@@ -285,6 +301,30 @@
       })
       .catch(() => {
         alert("Something went wrong. Please try again.");
+      });
+    });
+  }
+
+    const contactForm = document.querySelector('form[name="contact"]');
+
+  if (contactForm) {
+    contactForm.addEventListener("submit", (e) => {
+      e.preventDefault();
+
+      const formData = new FormData(contactForm);
+
+      fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams(formData).toString()
+      })
+      .then(() => {
+        contactForm.style.display = "none";
+        const success = contactForm.nextElementSibling;
+        if (success) success.hidden = false;
+      })
+      .catch(() => {
+        alert("Message failed to send. Please try again.");
       });
     });
   }
