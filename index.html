@@ -284,55 +284,75 @@
     btn.setAttribute("aria-expanded", open ? "true" : "false");
   });
 
+  // -------- GET A NET --------
   const netForm = document.querySelector('form[name="get-a-net"]');
 
   if (netForm) {
     netForm.addEventListener("submit", (e) => {
       e.preventDefault();
 
+      const submitBtn = netForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.dataset.originalText = submitBtn.textContent;
+        submitBtn.textContent = "Sending...";
+      }
+
       const formData = new FormData(netForm);
 
       fetch("/", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/x-www-form-urlencoded"
-        },
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
         body: new URLSearchParams(formData).toString()
       })
       .then(() => {
         const stage = document.getElementById("getanet-stage");
+        const success = document.querySelector("#getanet-stage .formSuccess");
         const y = window.scrollY; // lock current scroll position
 
         if (stage) {
-          // prevent layout collapse (stops page jump)
+          // lock height so the page doesn't jump
           stage.style.minHeight = stage.offsetHeight + "px";
           stage.classList.add("is-sent");
         }
 
-        // swap visibility
+        // hide form + show success
         netForm.hidden = true;
-        const success = netForm.nextElementSibling;
         if (success) success.hidden = false;
 
-        // restore scroll position after DOM updates
+        // restore scroll position after DOM changes
         requestAnimationFrame(() => window.scrollTo(0, y));
 
-        // optional: release height lock after animation
+        // release height lock after animation
         setTimeout(() => {
           if (stage) stage.style.minHeight = "";
         }, 400);
       })
       .catch(() => {
         alert("Something went wrong. Please try again.");
+      })
+      .finally(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = submitBtn.dataset.originalText || "Send";
+        }
       });
     });
   }
 
-    const contactForm = document.querySelector('form[name="contact"]');
+  // -------- CONTACT --------
+  const contactForm = document.querySelector('form[name="contact"]');
 
   if (contactForm) {
     contactForm.addEventListener("submit", (e) => {
       e.preventDefault();
+
+      const submitBtn = contactForm.querySelector('button[type="submit"]');
+      if (submitBtn) {
+        submitBtn.disabled = true;
+        submitBtn.dataset.originalText = submitBtn.textContent;
+        submitBtn.textContent = "Sending...";
+      }
 
       const formData = new FormData(contactForm);
 
@@ -342,12 +362,18 @@
         body: new URLSearchParams(formData).toString()
       })
       .then(() => {
-        contactForm.style.display = "none";
-        const success = contactForm.nextElementSibling;
+        contactForm.hidden = true;
+        const success = contactForm.parentElement?.querySelector(".formSuccess");
         if (success) success.hidden = false;
       })
       .catch(() => {
         alert("Message failed to send. Please try again.");
+      })
+      .finally(() => {
+        if (submitBtn) {
+          submitBtn.disabled = false;
+          submitBtn.textContent = submitBtn.dataset.originalText || "Send";
+        }
       });
     });
   }
