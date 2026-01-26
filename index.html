@@ -127,7 +127,7 @@
       </h3>
 
       <!-- Netlify form -->
-      <form name="get-a-net" method="POST" data-netlify="true" class="bigForm">
+      <form name="get-a-net" method="POST" data-netlify="true" class="bigForm" novalidate>
         <input type="hidden" name="form-name" value="get-a-net" />
 
         <label>Full name
@@ -255,15 +255,21 @@
 
     if (netForm) {
       netForm.addEventListener("submit", (e) => {
-        netForm.querySelector('button[type="submit"]').disabled = true;
+        e.preventDefault();
 
-        setTimeout(() => {
+        const data = new FormData(netForm);
+
+        fetch("/", {
+          method: "POST",
+          body: data
+        }).then(() => {
           netForm.style.display = "none";
           const success = netForm.nextElementSibling;
           if (success) success.hidden = false;
-        }, 300);
+        }).catch(() => {
+          alert("Something went wrong. Please try again.");
+        });
       });
-    }
   </script>
 </body>
 </html>
