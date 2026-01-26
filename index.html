@@ -155,21 +155,31 @@
           <input name="location" type="text" placeholder="city, state, country" />
         </label>
 
-        <label>How did you hear about us?
-          <input name="referral" type="text" />
+        <label>
+          Tell us about the treenet you'd like us to build.
+          <span style="font-weight:400; opacity:.8;">
+           (e.g. How many trees? Who would use it?)
+          </span>
+          <textarea
+            name="project_details"
+            rows="5"
+            placeholder="Example: 3 trees, mostly kids ages 6–10, want something bouncy but safe."
+          ></textarea>
         </label>
 
-        <label>Select a Service
-          <select name="service">
-            <option value="">Choose an option</option>
-            <option>Treenet</option>
-            <option>Monkeycouch</option>
-            <option>Consultation</option>
-          </select>
+        <label>How did you hear about us?
+          <input name="referral" type="text" placeholder="Example: Saw a net, Instagram, Word of mouth" />
         </label>
 
         <button class="btn btn-white" type="submit">Send</button>
       </form>
+      <div class="formSuccess" hidden>
+        <h3>Thanks — we got your request!</h3>
+        <p>
+          Thanks! We’ll review your info and get back to you shortly.
+          If it’s urgent, feel free to call us.
+        </p>
+      </div>
     </div>
   </section>
 
@@ -240,6 +250,20 @@
       const open = menu.classList.toggle("open");
       btn.setAttribute("aria-expanded", open ? "true" : "false");
     });
+
+    const netForm = document.querySelector('form[name="get-a-net"]');
+
+    if (netForm) {
+      netForm.addEventListener("submit", (e) => {
+        netForm.querySelector('button[type="submit"]').disabled = true;
+
+        setTimeout(() => {
+          netForm.style.display = "none";
+          const success = netForm.nextElementSibling;
+          if (success) success.hidden = false;
+        }, 300);
+      });
+    }
   </script>
 </body>
 </html>

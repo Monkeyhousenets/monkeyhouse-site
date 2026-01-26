@@ -483,16 +483,48 @@ body{
   flex-direction:column;
   gap: 6px;
 }
-.bigForm input, .bigForm select, .contactForm input, .contactForm textarea{
+.bigForm input,
+.bigForm select,
+.bigForm textarea,
+.contactForm input,
+.contactForm textarea {
   padding: 12px 12px;
   border: 1px solid var(--formBorder);
   background: var(--formBlue);
   color: #fff;
   font-size: 14px;
+  font-family: inherit;   /* ← THIS is the key line */
   outline: none;
 }
 .bigForm textarea{ resize: vertical; }
 .bigForm select{ appearance: auto; }
+
+/* Placeholder text styling */
+.bigForm input::placeholder,
+.bigForm textarea::placeholder,
+.contactForm input::placeholder,
+.contactForm textarea::placeholder {
+  color: rgba(255,255,255,.65);
+  font-family: inherit;
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+.formSuccess{
+  max-width: 520px;
+  margin: 0 auto;
+  text-align: center;
+  background: rgba(0,0,0,.15);
+  padding: 28px 24px;
+  border: 1px solid rgba(255,255,255,.25);
+  color: var(--neon);
+}
+
+.formSuccess p{
+  color: rgba(255,255,255,.9);
+  margin-top: 10px;
+}
+
 
 /* Contact split (left white, right teal) */
 .contactSplit{
