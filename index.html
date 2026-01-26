@@ -119,12 +119,15 @@
     </div>
   </section>
 
-  <section class="strip teal">
-    <div class="strip-inner formCenter">
-      <h3 class="formHeading">
-        Let us know what you'd like us to weave and we'll<br />
-        start dreaming something up for you!
-      </h3>
+<section class="strip teal">
+  <div class="strip-inner formCenter">
+
+    <h3 class="formHeading">
+      Let us know what you'd like us to weave and we'll<br />
+      start dreaming something up for you!
+    </h3>
+
+    <div class="formStage" id="getanet-stage">
 
       <!-- Netlify form -->
       <form 
@@ -135,13 +138,14 @@
         class="bigForm"
       >
         <input type="hidden" name="form-name" value="get-a-net" />
+
         <p hidden>
           <label>
             Don’t fill this out:
             <input name="bot-field" />
           </label>
         </p>
-        
+
         <label>Full name
           <input name="full_name" type="text" required />
         </label>
@@ -170,7 +174,7 @@
         <label>
           Tell us about the treenet you'd like us to build.
           <span style="font-weight:400; opacity:.8;">
-           (e.g. How many trees? Who would use it?)
+            (e.g. How many trees? Who would use it?)
           </span>
           <textarea
             name="project_details"
@@ -180,30 +184,21 @@
         </label>
 
         <label>How did you hear about us?
-          <input name="referral" type="text" placeholder="Example: Saw a net, Instagram, Word of mouth" />
+          <input name="referral" type="text" placeholder="Instagram, word of mouth, saw a net, etc." />
         </label>
 
         <button class="btn btn-white" type="submit">Send</button>
       </form>
 
-      <div class="formStage" id="getanet-stage">
-        <form 
-          name="get-a-net"
-          method="POST"
-          data-netlify="true"
-          data-netlify-honeypot="bot-field"
-          class="bigForm"
-        >
-          ...
-        </form>
-
-        <div class="formSuccess" hidden>
-          <h3>Thanks — we got your request!</h3>
-          <p>We’ll review your info and get back to you shortly.</p>
-        </div>
+      <!-- Success message -->
+      <div class="formSuccess" hidden>
+        <h3>Thanks — we got your request!</h3>
+        <p>We’ll review your info and get back to you shortly.</p>
       </div>
+
     </div>
-  </section>
+  </div>
+</section>
 
   <!-- CONTACT (split layout like screenshot) -->
   <section id="contact" class="sectionHeader" style="--headerText: 'Contact';">
