@@ -1,0 +1,534 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Monkeyhouse Treenets — Option B</title>
+  <meta name="description" content="Custom handwoven treenets in Austin, TX. Play, lounge, and explore in the trees." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&display=swap" rel="stylesheet" />
+  <style>
+    /* === OPTION B: "The Playground" ===
+       Bold, energetic, color-saturated. Dark backgrounds with bright accents.
+       Chunky rounded typography. Gallery-forward. Feels like FUN.
+       The neon yellow is a hero color, not just an accent.
+       Big, punchy, unapologetic. */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Outfit', ui-sans-serif, system-ui, sans-serif;
+      color: #fff;
+      background: #0b1418;
+      line-height: 1.6;
+    }
+
+    :root {
+      --teal: #2bbad4;
+      --teal-dark: #0e7f92;
+      --teal-deep: #093e48;
+      --neon: #d7ff3a;
+      --dark: #0b1418;
+      --dark-card: #111e24;
+      --dark-surface: #162329;
+      --text: #fff;
+      --text-muted: rgba(255,255,255,.65);
+      --nav-h: 72px;
+    }
+
+    /* --- NAV --- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      background: rgba(11,20,24,.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,.06);
+      height: var(--nav-h);
+    }
+    .nav-inner {
+      max-width: 1200px; margin: 0 auto; padding: 0 20px;
+      display: flex; align-items: center; height: 100%; gap: 24px;
+    }
+    .nav-logo { height: 46px; width: auto; }
+    .nav-links { display: flex; gap: 24px; flex: 1; }
+    .nav-links a {
+      text-decoration: none; color: rgba(255,255,255,.7);
+      font-weight: 700; font-size: 13px; letter-spacing: .6px; text-transform: uppercase;
+      transition: color .2s;
+    }
+    .nav-links a:hover { color: var(--neon); }
+    .nav-right { display: flex; align-items: center; gap: 14px; }
+    .nav-phone { font-weight: 700; font-size: 14px; color: rgba(255,255,255,.7); }
+    .nav-cta {
+      background: var(--neon); color: var(--dark);
+      padding: 10px 24px; border-radius: 100px; text-decoration: none;
+      font-weight: 800; font-size: 13px; letter-spacing: .2px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover { transform: scale(1.05); box-shadow: 0 0 24px rgba(215,255,58,.3); }
+
+    /* --- HERO --- */
+    .hero {
+      margin-top: var(--nav-h);
+      min-height: calc(100vh - var(--nav-h));
+      background: linear-gradient(to bottom, rgba(11,20,24,.3) 0%, rgba(11,20,24,.7) 100%), url("hero.jpg");
+      background-size: cover; background-position: center 40%;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center; padding: 60px 24px;
+    }
+    .hero-content { max-width: 800px; }
+    .hero h1 {
+      font-size: clamp(48px, 8vw, 88px);
+      font-weight: 900; line-height: 1.0;
+      color: var(--neon);
+      text-shadow: 0 4px 40px rgba(0,0,0,.5);
+      margin-bottom: 20px;
+      letter-spacing: -1px;
+    }
+    .hero p {
+      font-size: 20px; color: rgba(255,255,255,.85);
+      max-width: 560px; margin: 0 auto 32px;
+      text-shadow: 0 2px 12px rgba(0,0,0,.4);
+    }
+    .hero-ctas { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block; padding: 16px 36px; border-radius: 100px;
+      background: var(--neon); color: var(--dark);
+      font-weight: 800; font-size: 16px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 30px rgba(215,255,58,.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(215,255,58,.35); }
+    .btn-secondary {
+      display: inline-block; padding: 16px 36px; border-radius: 100px;
+      background: transparent; color: #fff;
+      border: 2px solid rgba(255,255,255,.3);
+      font-weight: 700; font-size: 16px; text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: var(--neon); background: rgba(215,255,58,.08); }
+
+    /* --- SECTIONS --- */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1200px; margin: 0 auto; }
+    .section-label {
+      font-size: 13px; font-weight: 800; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 12px;
+    }
+    .section-title {
+      font-size: clamp(32px, 5vw, 52px);
+      font-weight: 900; line-height: 1.1; margin-bottom: 16px;
+      letter-spacing: -.5px;
+    }
+    .section-body { font-size: 17px; color: var(--text-muted); max-width: 580px; line-height: 1.7; }
+
+    /* --- VIDEO + EXPLAINER (side by side, video bigger) --- */
+    .explainer-section { background: var(--dark); }
+    .explainer-grid {
+      display: grid; grid-template-columns: 1.3fr 1fr; gap: 48px;
+      align-items: center; margin-top: 40px;
+    }
+    .explainer-video {
+      border-radius: 16px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.4);
+      border: 1px solid rgba(255,255,255,.08);
+    }
+    .explainer-video iframe { width: 100%; aspect-ratio: 16/9; display: block; border: 0; }
+    .explainer-text .highlight {
+      color: var(--neon); font-weight: 800;
+    }
+    .explainer-features {
+      display: flex; flex-direction: column; gap: 16px; margin-top: 24px;
+    }
+    .feature-pill {
+      display: flex; align-items: center; gap: 12px;
+      background: var(--dark-card); border: 1px solid rgba(255,255,255,.06);
+      padding: 14px 18px; border-radius: 12px;
+    }
+    .feature-icon {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--teal-deep); color: var(--neon);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; flex-shrink: 0;
+    }
+    .feature-pill span { font-size: 15px; font-weight: 600; }
+
+    /* --- GALLERY (masonry-style, big & bold) --- */
+    .gallery-section { background: var(--dark-surface); }
+    .gallery-section .section-title { color: var(--neon); }
+    .gallery-masonry {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 200px; gap: 12px; margin-top: 40px;
+    }
+    .g-item {
+      border-radius: 14px; overflow: hidden;
+      background-size: cover; background-position: center;
+      position: relative; transition: transform .3s;
+      cursor: pointer;
+    }
+    .g-item:hover { transform: scale(1.02); z-index: 2; }
+    .g-item.big { grid-column: span 2; grid-row: span 2; }
+    .g-item.tall { grid-row: span 2; }
+    .g-placeholder {
+      background: linear-gradient(135deg, var(--teal-deep), var(--dark-card));
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.25); font-size: 14px; font-weight: 700;
+    }
+
+    /* --- HOW IT WORKS (horizontal numbered steps) --- */
+    .how-section { background: var(--dark); }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      margin-top: 48px; position: relative;
+    }
+    .how-steps::before {
+      content: ''; position: absolute; top: 30px; left: 8%; right: 8%;
+      height: 2px; background: rgba(255,255,255,.1);
+    }
+    .how-step { text-align: center; position: relative; padding: 0 12px; }
+    .how-num {
+      width: 60px; height: 60px; border-radius: 50%;
+      background: var(--teal-deep); border: 3px solid var(--teal);
+      color: var(--neon); font-weight: 900; font-size: 24px;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; position: relative; z-index: 2;
+    }
+    .how-step h3 { font-size: 18px; font-weight: 800; margin-bottom: 8px; color: var(--neon); }
+    .how-step p { font-size: 14px; color: var(--text-muted); line-height: 1.5; }
+
+    /* --- TESTIMONIALS (horizontal scroll cards) --- */
+    .test-section { background: var(--dark-surface); }
+    .test-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; margin-top: 40px; }
+    .test-card {
+      background: var(--dark-card); border: 1px solid rgba(255,255,255,.06);
+      border-radius: 16px; padding: 28px;
+      transition: transform .2s, border-color .2s;
+    }
+    .test-card:hover { transform: translateY(-4px); border-color: rgba(215,255,58,.2); }
+    .test-stars { color: var(--neon); margin-bottom: 14px; letter-spacing: 3px; }
+    .test-text { font-size: 15px; color: var(--text-muted); line-height: 1.7; margin-bottom: 18px; }
+    .test-author { font-weight: 700; font-size: 14px; }
+    .test-loc { font-size: 13px; color: rgba(255,255,255,.4); }
+
+    /* --- GET A NET (dark form) --- */
+    .getanet-section {
+      background: linear-gradient(180deg, var(--teal-deep) 0%, var(--dark) 100%);
+    }
+    .getanet-section .section-title { color: var(--neon); }
+    .form-wrap { max-width: 520px; margin: 40px auto 0; }
+    .form-wrap label {
+      display: flex; flex-direction: column; gap: 6px;
+      font-size: 13px; font-weight: 700; color: rgba(255,255,255,.8);
+      margin-bottom: 14px; text-transform: uppercase; letter-spacing: .5px;
+    }
+    .form-wrap input,
+    .form-wrap select,
+    .form-wrap textarea {
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 10px;
+      font-size: 15px; font-family: inherit;
+      background: rgba(255,255,255,.06); color: #fff;
+      transition: border-color .2s;
+    }
+    .form-wrap input:focus,
+    .form-wrap select:focus,
+    .form-wrap textarea:focus {
+      outline: none; border-color: var(--neon);
+      box-shadow: 0 0 0 3px rgba(215,255,58,.1);
+    }
+    .form-wrap input::placeholder,
+    .form-wrap textarea::placeholder { color: rgba(255,255,255,.35); }
+    .form-wrap textarea { resize: vertical; }
+    .form-wrap select { appearance: auto; }
+    .form-submit {
+      width: 100%; padding: 16px; border: 0; border-radius: 100px;
+      background: var(--neon); color: var(--dark);
+      font-weight: 900; font-size: 16px; cursor: pointer;
+      transition: transform .2s, box-shadow .2s; margin-top: 8px;
+      letter-spacing: .3px;
+    }
+    .form-submit:hover { transform: scale(1.02); box-shadow: 0 0 30px rgba(215,255,58,.3); }
+
+    /* --- CONTACT --- */
+    .contact-section { background: var(--dark); }
+    .contact-split { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; margin-top: 40px; }
+    .contact-left h3 { font-size: 28px; font-weight: 900; margin-bottom: 20px; }
+    .contact-left a {
+      display: block; color: var(--teal); text-decoration: none;
+      font-weight: 700; font-size: 17px; margin-bottom: 10px;
+      transition: color .2s;
+    }
+    .contact-left a:hover { color: var(--neon); }
+    .contact-left .area { color: var(--text-muted); font-size: 15px; margin-top: 16px; }
+    .contact-socials { display: flex; gap: 10px; margin-top: 20px; }
+    .contact-socials a {
+      width: 42px; height: 42px; border-radius: 10px;
+      background: var(--dark-card); border: 1px solid rgba(255,255,255,.08);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--teal); text-decoration: none;
+      transition: background .2s, color .2s;
+    }
+    .contact-socials a:hover { background: var(--teal-deep); color: var(--neon); }
+    .contact-socials svg { width: 20px; height: 20px; fill: currentColor; }
+    .contact-right { display: flex; flex-direction: column; gap: 14px; }
+    .contact-right label {
+      display: flex; flex-direction: column; gap: 6px;
+      font-size: 13px; font-weight: 700; color: rgba(255,255,255,.8);
+      text-transform: uppercase; letter-spacing: .5px;
+    }
+    .contact-right input,
+    .contact-right textarea {
+      padding: 14px 16px;
+      border: 1px solid rgba(255,255,255,.15);
+      border-radius: 10px; font-size: 15px; font-family: inherit;
+      background: rgba(255,255,255,.06); color: #fff;
+    }
+    .contact-right input:focus,
+    .contact-right textarea:focus { outline: none; border-color: var(--teal); }
+
+    /* --- FOOTER --- */
+    .footer {
+      background: var(--dark-card); padding: 24px;
+      text-align: center; color: rgba(255,255,255,.35); font-size: 13px;
+      border-top: 1px solid rgba(255,255,255,.04);
+    }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .nav-links, .nav-phone { display: none; }
+      .explainer-grid { grid-template-columns: 1fr; }
+      .gallery-masonry { grid-template-columns: 1fr 1fr; grid-auto-rows: 160px; }
+      .g-item.big { grid-column: span 2; }
+      .how-steps { grid-template-columns: 1fr 1fr; gap: 32px; }
+      .how-steps::before { display: none; }
+      .test-cards { grid-template-columns: 1fr; }
+      .contact-split { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-inner">
+    <a href="#"><img class="nav-logo" src="monkeyhouse-logo-transparent.png" alt="Monkeyhouse" /></a>
+    <div class="nav-links">
+      <a href="#whats-a-treenet">What's a Treenet?</a>
+      <a href="#gallery">Our Work</a>
+      <a href="#how-it-works">How It Works</a>
+      <a href="#getanet">Get a Net</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-phone">(512) 591-8835</span>
+      <a class="nav-cta" href="#getanet">Get a Net</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <h1>Go Play.</h1>
+    <p>Custom handwoven rope playgrounds built between your trees. Bouncy. Loungy. Completely one of a kind.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#getanet">Get a Free Consultation</a>
+      <a class="btn-secondary" href="#whats-a-treenet">What's a Treenet?</a>
+    </div>
+  </div>
+</section>
+
+<!-- WHAT'S A TREENET? -->
+<section id="whats-a-treenet" class="explainer-section">
+  <div class="section-inner">
+    <div class="section-label">What's a Treenet?</div>
+    <h2 class="section-title">A giant woven <span style="color: var(--neon);">playground</span> built in your trees</h2>
+    <div class="explainer-grid">
+      <div class="explainer-video">
+        <iframe
+          loading="lazy"
+          src="https://www.youtube-nocookie.com/embed/lGE6RxsOahc?rel=0&modestbranding=1"
+          title="The Ultimate Treenet Experience"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
+      </div>
+      <div class="explainer-text">
+        <p class="section-body">
+          There's something that inspires <span class="highlight">wonder</span> in people when they see one of these things. A treenet is a completely handwoven structure made out of rated climbing materials — bouncy like a trampoline, loungy like a hammock.
+        </p>
+        <div class="explainer-features">
+          <div class="feature-pill">
+            <div class="feature-icon">&#9889;</div>
+            <span>UIAA-rated climbing rope &amp; hardware</span>
+          </div>
+          <div class="feature-pill">
+            <div class="feature-icon">&#127795;</div>
+            <span>Tree-safe spacer block installation</span>
+          </div>
+          <div class="feature-pill">
+            <div class="feature-icon">&#9997;</div>
+            <span>Every knot handwoven on-site</span>
+          </div>
+          <div class="feature-pill">
+            <div class="feature-icon">&#127912;</div>
+            <span>Custom colors &amp; patterns</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- GALLERY -->
+<section id="gallery" class="gallery-section">
+  <div class="section-inner">
+    <div class="section-label">Our Work</div>
+    <h2 class="section-title">Every net is one of a kind</h2>
+    <div class="gallery-masonry">
+      <div class="g-item big" style="background-image: url('hero.jpg');"></div>
+      <div class="g-item g-placeholder">Photo</div>
+      <div class="g-item g-placeholder">Photo</div>
+      <div class="g-item tall" style="background-image: url('rope.jpg');"></div>
+      <div class="g-item g-placeholder">Photo</div>
+      <div class="g-item g-placeholder">Photo</div>
+      <div class="g-item g-placeholder">Photo</div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="how-section">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">Four steps to your treenet</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <h3>Reach Out</h3>
+        <p>Tell us about your trees and your dream. We'll figure out what's possible.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <h3>Design Visit</h3>
+        <p>Tim comes to your property and designs something custom for the space.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <h3>Build</h3>
+        <p>Every rope rated, every knot handwoven on-site. No prefab, no shortcuts.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <h3>Go Play</h3>
+        <p>Backflips, naps, forts, stargazing. It's yours forever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="test-section">
+  <div class="section-inner">
+    <div class="section-label">Happy Humans</div>
+    <h2 class="section-title">What people say</h2>
+    <div class="test-cards">
+      <div class="test-card">
+        <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="test-text">"Our kids literally don't come inside anymore. Best thing we've ever added to our backyard."</p>
+        <div class="test-author">— Placeholder Family</div>
+        <div class="test-loc">Austin, TX</div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="test-text">"When Tim started weaving I was mesmerized. It's a work of art that you can bounce on."</p>
+        <div class="test-author">— Placeholder Client</div>
+        <div class="test-loc">Dripping Springs, TX</div>
+      </div>
+      <div class="test-card">
+        <div class="test-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="test-text">"Adults love it just as much as the kids. It's like a hammock, trampoline, and treehouse all in one."</p>
+        <div class="test-author">— Placeholder Family</div>
+        <div class="test-loc">Wimberley, TX</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section style="background: var(--teal-deep); padding: 60px 24px; text-align: center;">
+  <h2 style="font-size: clamp(28px, 4vw, 44px); font-weight: 900; color: var(--neon); margin-bottom: 12px;">Ready to feel like a kid again?</h2>
+  <p style="color: var(--text-muted); font-size: 17px; margin-bottom: 28px;">Every treenet starts with a conversation about your trees.</p>
+  <a class="btn-primary" href="#getanet" style="font-size: 18px; padding: 18px 44px;">Get Your Free Consultation</a>
+</section>
+
+<!-- GET A NET -->
+<section id="getanet" class="getanet-section">
+  <div class="section-inner" style="text-align: center;">
+    <div class="section-label">Get a Net</div>
+    <h2 class="section-title">Tell us about your trees</h2>
+    <p class="section-body" style="margin: 0 auto;">We'll start dreaming something up for you.</p>
+    <div class="form-wrap">
+      <form name="get-a-net" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="get-a-net" />
+        <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
+        <label>Full name <input name="full_name" type="text" required /></label>
+        <label>Email <input name="email" type="email" required placeholder="name@example.com" /></label>
+        <label>Phone <input name="phone" type="tel" placeholder="555-555-5555" /></label>
+        <label>Preferred contact method
+          <select name="contact_method">
+            <option value="">Choose</option>
+            <option>Email</option>
+            <option>Phone call</option>
+            <option>Text</option>
+          </select>
+        </label>
+        <label>Location <input name="location" type="text" placeholder="City, State" /></label>
+        <label>Tell us about your project
+          <textarea name="project_details" rows="4" placeholder="How many trees? Who's going to play on it?"></textarea>
+        </label>
+        <label>How did you hear about us? <input name="referral" type="text" placeholder="Instagram, friend, etc." /></label>
+        <button class="form-submit" type="submit">Send My Request</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-inner">
+    <div class="contact-split">
+      <div class="contact-left">
+        <h3>Get in Touch</h3>
+        <a href="tel:+15125918835">(512) 591-8835</a>
+        <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a>
+        <p class="area">Austin, TX &amp; Hill Country area</p>
+        <div class="contact-socials">
+          <a href="https://www.instagram.com/monkeyhousenets" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/><path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61556323751576" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.6V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V11H7v3h2.1v8h4.4z"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="contact-right">
+        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field-contact">
+          <input type="hidden" name="form-name" value="contact" />
+          <p hidden><label>Don't fill: <input name="bot-field-contact" /></label></p>
+          <label>Full Name <input name="name" type="text" required /></label>
+          <label>Email <input name="email" type="email" required /></label>
+          <label>Message <textarea name="message" rows="5" required></textarea></label>
+          <button class="form-submit" type="submit">Send Message</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  &copy; <script>document.write(new Date().getFullYear())</script> Monkeyhouse LLC &middot; Austin, TX
+</footer>
+
+</body>
+</html>

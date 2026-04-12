@@ -1,0 +1,125 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Font Pairing Test</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;700&family=Playfair+Display:wght@700&family=Cormorant+Garamond:wght@600&family=Caveat:wght@700&family=Kalam:wght@700&family=Architects+Daughter&family=IBM+Plex+Serif:wght@600&family=Satisfy&family=Libre+Baskerville:wght@700&family=Patrick+Hand&family=Source+Serif+4:wght@700&family=Indie+Flower&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      font-family: 'Inter', sans-serif;
+      background: #0a5e6e;
+      color: #fff;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px 60px;
+      padding: 60px 40px;
+      margin: 0;
+    }
+    .option {
+      text-align: center;
+      width: 100%;
+    }
+    .option-label {
+      font-size: 12px;
+      font-weight: 800;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.4);
+      margin-bottom: 20px;
+    }
+    .line1 {
+      color: rgba(255,255,255,.92);
+      margin: 0;
+    }
+    .amp {
+      color: rgba(255,255,255,.5);
+      font-size: 24px;
+      margin: 4px 0;
+    }
+    .line3 {
+      margin: 0;
+    }
+    .line3 em {
+      font-style: normal;
+      color: #d7ff3a;
+    }
+    hr {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,.12);
+      width: 100%;
+      max-width: 700px;
+    }
+
+    /* Option 1: Playfair (formal serif) + Caveat (handwritten) */
+    .opt1 .line1 { font-family: 'Playfair Display', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 700; letter-spacing: 1px; }
+    .opt1 .line3 { font-family: 'Caveat', cursive; font-size: clamp(36px, 5vw, 54px); font-weight: 700; }
+
+    /* Option 2: Cormorant Garamond (elegant serif) + Kalam (natural handwriting) */
+    .opt2 .line1 { font-family: 'Cormorant Garamond', serif; font-size: clamp(30px, 4vw, 44px); font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+    .opt2 .line3 { font-family: 'Kalam', cursive; font-size: clamp(34px, 5vw, 50px); font-weight: 700; }
+
+    /* Option 3: Inter (clean corporate sans) + Architects Daughter (playful hand-drawn) */
+    .opt3 .line1 { font-family: 'Inter', sans-serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
+    .opt3 .line3 { font-family: 'Architects Daughter', cursive; font-size: clamp(34px, 5vw, 52px); }
+
+    /* Option 4: IBM Plex Serif (technical/dry) + Satisfy (flowing script) */
+    .opt4 .line1 { font-family: 'IBM Plex Serif', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 600; letter-spacing: 1.5px; }
+    .opt4 .line3 { font-family: 'Satisfy', cursive; font-size: clamp(38px, 5vw, 58px); }
+
+    /* Option 5: Libre Baskerville (stuffy traditional) + Patrick Hand (casual handwriting) */
+    .opt5 .line1 { font-family: 'Libre Baskerville', serif; font-size: clamp(26px, 4vw, 40px); font-weight: 700; letter-spacing: 1px; }
+    .opt5 .line3 { font-family: 'Patrick Hand', cursive; font-size: clamp(36px, 5vw, 54px); }
+
+    /* Option 6: Source Serif 4 (newspaper formal) + Indie Flower (kid's handwriting) */
+    .opt6 .line1 { font-family: 'Source Serif 4', serif; font-size: clamp(28px, 4vw, 42px); font-weight: 700; letter-spacing: 1px; text-transform: uppercase; }
+    .opt6 .line3 { font-family: 'Indie Flower', cursive; font-size: clamp(34px, 5vw, 52px); }
+  </style>
+</head>
+<body>
+
+  <div class="option opt1">
+    <div class="option-label">Option 1 — Playfair Display + Caveat</div>
+    <p class="line1">Out of the house</p>
+    <p class="amp">&amp;</p>
+    <p class="line3">Into the <em>trees</em></p>
+  </div>
+
+  <div class="option opt2">
+    <div class="option-label">Option 2 — Cormorant Garamond + Kalam</div>
+    <p class="line1">Out of the house</p>
+    <p class="amp">&amp;</p>
+    <p class="line3">Into the <em>trees</em></p>
+  </div>
+
+  <div class="option opt3">
+    <div class="option-label">Option 3 — Inter + Architects Daughter</div>
+    <p class="line1">Out of the house</p>
+    <p class="amp">&amp;</p>
+    <p class="line3">Into the <em>trees</em></p>
+  </div>
+
+  <div class="option opt4">
+    <div class="option-label">Option 4 — IBM Plex Serif + Satisfy</div>
+    <p class="line1">Out of the house</p>
+    <p class="amp">&amp;</p>
+    <p class="line3">Into the <em>trees</em></p>
+  </div>
+
+  <div class="option opt5">
+    <div class="option-label">Option 5 — Libre Baskerville + Patrick Hand</div>
+    <p class="line1">Out of the house</p>
+    <p class="amp">&amp;</p>
+    <p class="line3">Into the <em>trees</em></p>
+  </div>
+
+  <div class="option opt6">
+    <div class="option-label">Option 6 — Source Serif 4 + Indie Flower</div>
+    <p class="line1">Out of the house</p>
+    <p class="amp">&amp;</p>
+    <p class="line3">Into the <em>trees</em></p>
+  </div>
+
+</body>
+</html>
