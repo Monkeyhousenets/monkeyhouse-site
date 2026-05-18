@@ -1,0 +1,122 @@
+/* ============================================================
+   Lightbox — fullscreen photo viewer with swipe + keyboard nav.
+   Used by index.html (homepage project blocks) and gallery.html.
+   ============================================================ */
+
+.lightbox {
+  position: fixed; inset: 0; z-index: 1000;
+  display: none;
+  align-items: center; justify-content: center;
+  opacity: 0; transition: opacity .22s ease;
+  -webkit-tap-highlight-color: transparent;
+}
+.lightbox.is-open { display: flex; opacity: 1; }
+
+.lb-backdrop {
+  position: absolute; inset: 0;
+  background: rgba(8, 18, 24, .92);
+  backdrop-filter: blur(8px);
+}
+
+.lb-stage {
+  position: relative;
+  max-width: 92vw; max-height: 80vh;
+  display: flex; align-items: center; justify-content: center;
+  z-index: 1;
+}
+.lb-image {
+  max-width: 100%; max-height: 80vh;
+  width: auto; height: auto;
+  border-radius: 10px;
+  box-shadow: 0 20px 60px rgba(0,0,0,.5);
+  user-select: none;
+  -webkit-user-drag: none;
+  touch-action: pan-y pinch-zoom;
+}
+.lb-image.is-loading { opacity: .3; }
+
+.lb-close, .lb-prev, .lb-next {
+  position: absolute; z-index: 2;
+  border: 0; cursor: pointer;
+  background: rgba(255,255,255,.12);
+  color: #fff;
+  backdrop-filter: blur(6px);
+  border: 1px solid rgba(255,255,255,.18);
+  transition: background .15s, transform .15s;
+  font-family: inherit;
+}
+.lb-close:hover, .lb-prev:hover, .lb-next:hover {
+  background: rgba(255,255,255,.22);
+}
+
+.lb-close {
+  top: 20px; right: 20px;
+  width: 44px; height: 44px; border-radius: 50%;
+  font-size: 18px; line-height: 1;
+}
+
+.lb-prev, .lb-next {
+  top: 50%; transform: translateY(-50%);
+  width: 52px; height: 52px; border-radius: 50%;
+  font-size: 28px; line-height: 1;
+  display: flex; align-items: center; justify-content: center;
+}
+.lb-prev { left: 20px; }
+.lb-next { right: 20px; }
+.lb-prev:hover { transform: translateY(-50%) translateX(-2px); }
+.lb-next:hover { transform: translateY(-50%) translateX(2px); }
+.lb-prev[disabled], .lb-next[disabled] { opacity: .25; cursor: default; pointer-events: none; }
+
+.lb-caption {
+  position: absolute;
+  bottom: 24px; left: 50%;
+  transform: translateX(-50%);
+  z-index: 2;
+  display: flex; gap: 18px; align-items: center;
+  padding: 12px 22px;
+  background: rgba(0,0,0,.45);
+  backdrop-filter: blur(8px);
+  border-radius: 100px;
+  color: #fff;
+  font-size: 14px; font-weight: 600;
+  max-width: 90vw;
+  text-align: center;
+}
+.lb-counter { opacity: .65; font-variant-numeric: tabular-nums; }
+.lb-title { font-weight: 700; }
+.lb-fullgallery {
+  color: #d7ff3a;
+  text-decoration: none;
+  font-weight: 800;
+  white-space: nowrap;
+  border-left: 1px solid rgba(255,255,255,.25);
+  padding-left: 18px;
+}
+.lb-fullgallery:hover { text-decoration: underline; }
+.lb-fullgallery.is-hidden { display: none; }
+.lb-fullgallery.is-hidden + * { display: none; }
+
+@media (max-width: 640px) {
+  .lb-close { top: 14px; right: 14px; width: 40px; height: 40px; }
+  .lb-prev, .lb-next {
+    width: 44px; height: 44px;
+    font-size: 24px;
+  }
+  .lb-prev { left: 10px; }
+  .lb-next { right: 10px; }
+  .lb-caption {
+    bottom: 14px;
+    flex-direction: column; gap: 6px;
+    padding: 10px 18px;
+    font-size: 13px;
+  }
+  .lb-fullgallery {
+    border-left: 0; padding-left: 0;
+    padding-top: 6px;
+    border-top: 1px solid rgba(255,255,255,.25);
+  }
+  .lb-image { max-height: 70vh; }
+}
+
+/* Prevent body scroll while lightbox is open */
+body.lb-locked { overflow: hidden; }

@@ -8,6 +8,7 @@
   <link rel="canonical" href="https://www.monkeyhousenets.com/" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700;800&family=Libre+Baskerville:wght@700&family=Satisfy&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="lightbox.css" />
   <style>
     /* === MONKEYHOUSE — based on iteration-2-a ===
        Editorial foundation, intro band, trust strip, linear How It Works.
@@ -257,21 +258,49 @@
     }
     .fun-video-wrap iframe { width: 100%; aspect-ratio: 16/9; display: block; border: 0; }
 
-    /* --- GALLERY --- */
+    /* --- GALLERY: OPTION B (Asymmetric Mosaic, Mast/Aesop) --- */
     .gallery-section { background: var(--cream); }
-    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
-    .gallery-item {
-      aspect-ratio: 4/3; border-radius: 12px; overflow: hidden;
-      background-size: cover; background-position: center;
-      transition: transform .3s; cursor: pointer;
+    .project-block { margin-top: 64px; }
+    .project-block:first-of-type { margin-top: 48px; }
+    .project-header {
+      display: flex; justify-content: space-between; align-items: flex-end;
+      margin-bottom: 22px; flex-wrap: wrap; gap: 14px;
     }
-    .gallery-item:hover { transform: scale(1.02); }
-    .gallery-item.feature { grid-column: span 2; aspect-ratio: 2/1; }
-    .gallery-placeholder {
-      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
-      display: flex; align-items: center; justify-content: center;
-      color: rgba(255,255,255,.45); font-size: 14px; font-weight: 600;
+    .project-header-left { display: flex; flex-direction: column; gap: 6px; }
+    .project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(26px, 3vw, 36px);
+      color: var(--text); line-height: 1.15;
     }
+    .project-meta {
+      font-size: 12px; color: var(--text-light);
+      letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700;
+    }
+    .project-see-all {
+      color: var(--teal-dark); text-decoration: none;
+      font-weight: 700; font-size: 14px; letter-spacing: .3px; white-space: nowrap;
+    }
+    .project-see-all:hover { color: var(--teal-deep); }
+    .project-mosaic {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      grid-template-rows: 1fr 1fr 1fr;
+      gap: 12px;
+      aspect-ratio: 16/10;
+    }
+    .project-mosaic .project-photo {
+      display: block;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--sand);
+      cursor: pointer;
+    }
+    .project-mosaic .project-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .5s ease;
+    }
+    .project-mosaic .project-photo:hover img { transform: scale(1.04); }
+    .project-mosaic .feature { grid-column: 1; grid-row: 1 / 4; }
 
     /* --- TESTIMONIALS (currently hidden — see TODO below) --- */
     .testimonials-section { background: var(--teal-deep); color: #fff; }
@@ -420,8 +449,26 @@
       .how-steps::before { display: none; }
       .how-num { width: 48px; height: 48px; font-size: 20px; }
 
-      .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
-      .gallery-item.feature { grid-column: span 1; aspect-ratio: 16/9; }
+      .project-mosaic {
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto auto auto;
+        aspect-ratio: auto;
+        gap: 8px;
+      }
+      .project-mosaic .feature {
+        grid-column: 1 / 3; grid-row: 1;
+        aspect-ratio: 16/9;
+      }
+      .project-mosaic .project-photo:nth-child(2),
+      .project-mosaic .project-photo:nth-child(3) {
+        aspect-ratio: 1/1;
+      }
+      .project-mosaic .project-photo:nth-child(4) {
+        grid-column: 1 / 3;
+        aspect-ratio: 16/9;
+      }
+      .project-header { margin-bottom: 14px; align-items: flex-start; }
+      .project-block { margin-top: 44px; }
 
       .testimonial-cards { grid-template-columns: 1fr; gap: 16px; }
       .testimonial-card { padding: 24px; }
@@ -624,38 +671,40 @@
   </div>
 </section>
 
-<!-- GALLERY
-     TODO post-launch: expand gallery as more install photos come in.
-     The grid is set up as: 1 feature item (spans 2 cols) + N regular items.
-     For a future agent / gallery auto-updater: append more
-     <div class="gallery-item" style="background-image: url('FILE.jpg');"></div>
-     entries below. Feature item should be the strongest hero shot. -->
+<!-- GALLERY (Option B: Asymmetric Mosaic) -->
 <section id="gallery" class="gallery-section">
   <div class="section-inner">
     <div class="section-label">Our Work</div>
     <h2 class="section-title">Every net is one of a kind</h2>
     <p class="section-body">Designed around the trees. Built by hand. No two are alike.</p>
-    <div class="gallery-grid">
-      <div class="gallery-item feature" style="background-image: url('hero.jpg');"></div>
-      <div class="gallery-item" style="background-image: url('rope.jpg');"></div>
-      <!-- AUTO-GALLERY-START — managed by the website-gallery-updater bot.
-           New install photos are inserted between these markers when Tim drops a
-           project folder into /srv/data/monkeyhouse/gallery-inbox/. Don't edit
-           by hand between the markers — manual edits get overwritten on the
-           next run. To remove an auto-added entry, delete the line and the
-           corresponding file under gallery/<slug>/. -->
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04040.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04057.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04062.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04071.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04077.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04112.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04132.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04149.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04152.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <div class="gallery-item" style="background-image: url('gallery/mariposa-montessori-nets/dsc04157.jpg');" role="img" aria-label="Mariposa Montessori Nets"></div>
-      <!-- AUTO-GALLERY-END -->
+
+    <!-- AUTO-GALLERY-INSERT-HERE -->
+    <!-- AUTO-PROJECT-START:mariposa-montessori-nets -->
+    <div class="project-block" data-project-slug="mariposa-montessori-nets" data-project-title="Mariposa Montessori Nets">
+      <div class="project-header">
+        <div class="project-header-left">
+          <h3 class="project-title">Mariposa Montessori Nets</h3>
+          <div class="project-meta">Austin, TX · 10 photos</div>
+        </div>
+        <a class="project-see-all" href="option-b-gallery.html#mariposa-montessori-nets">See all photos &rarr;</a>
+      </div>
+      <div class="project-mosaic">
+        <a class="project-photo feature" href="option-b-gallery.html#mariposa-montessori-nets" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04040.jpg" data-gallery-href="option-b-gallery.html#mariposa-montessori-nets">
+          <img src="gallery/mariposa-montessori-nets/dsc04040.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo" href="option-b-gallery.html#mariposa-montessori-nets" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04057.jpg" data-gallery-href="option-b-gallery.html#mariposa-montessori-nets">
+          <img src="gallery/mariposa-montessori-nets/dsc04057.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo" href="option-b-gallery.html#mariposa-montessori-nets" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04062.jpg" data-gallery-href="option-b-gallery.html#mariposa-montessori-nets">
+          <img src="gallery/mariposa-montessori-nets/dsc04062.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo" href="option-b-gallery.html#mariposa-montessori-nets" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04071.jpg" data-gallery-href="option-b-gallery.html#mariposa-montessori-nets">
+          <img src="gallery/mariposa-montessori-nets/dsc04071.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+      </div>
     </div>
+    <!-- AUTO-PROJECT-END:mariposa-montessori-nets -->
+
   </div>
 </section>
 
@@ -782,5 +831,6 @@
     });
   });
 </script>
+<script src="lightbox.js" defer></script>
 </body>
 </html>

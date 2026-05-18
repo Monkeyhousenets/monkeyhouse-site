@@ -1,0 +1,381 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Our Work — Monkeyhouse Treenets</title>
+  <meta name="description" content="Gallery of custom handwoven treenet installations by Monkeyhouse in Austin, TX." />
+  <link rel="canonical" href="https://www.monkeyhousenets.com/gallery.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="lightbox.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      color: #1a2a32;
+      background: #faf9f5;
+      line-height: 1.6;
+    }
+    :root {
+      --teal: #3a9fbf;
+      --teal-dark: #0e7f92;
+      --teal-deep: #0a5e6e;
+      --neon: #d7ff3a;
+      --cream: #faf9f5;
+      --warm-white: #f3f0e8;
+      --sand: #e4ddd0;
+      --text: #1a2a32;
+      --text-light: #5a6a72;
+      --nav-h: 80px;
+    }
+    [id] { scroll-margin-top: 140px; }
+
+    /* --- NAV (same visual language as homepage) --- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+    }
+    .nav-bg {
+      position: absolute; top: 0; left: 0; right: 0; height: var(--nav-h);
+      background: rgba(250,249,245,.85);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .nav-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; height: var(--nav-h); gap: 32px;
+      position: relative; z-index: 1;
+    }
+    .nav-logo-link { text-decoration: none; display: flex; align-items: flex-end; }
+    .nav-logo { height: 100px; width: auto; display: block; margin-bottom: -55px; }
+    .nav-links { display: flex; gap: 28px; flex: 1; }
+    .nav-links a {
+      text-decoration: none; color: var(--teal-dark);
+      font-weight: 700; font-size: 13px; letter-spacing: .5px; text-transform: uppercase;
+    }
+    .nav-links a.is-current { color: var(--teal-deep); position: relative; }
+    .nav-links a.is-current::after {
+      content: ''; position: absolute; left: 0; right: 0; bottom: -8px;
+      height: 2px; background: var(--teal-deep);
+    }
+    .nav-links a:hover { color: var(--teal-deep); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-phone { font-weight: 700; font-size: 14px; color: var(--text); }
+    .nav-cta {
+      background: var(--teal-dark); color: var(--neon);
+      padding: 10px 22px; border-radius: 8px; text-decoration: none;
+      font-weight: 800; font-size: 13px; letter-spacing: .3px;
+    }
+    .nav-cta:hover { box-shadow: 0 6px 20px rgba(14,127,146,.3); }
+    .menu-btn {
+      display: none; border: 0;
+      background: rgba(0,0,0,.06); border-radius: 8px;
+      width: 44px; height: 38px; font-size: 20px;
+      cursor: pointer; color: var(--text);
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: absolute; top: var(--nav-h); left: 0; right: 0;
+      background: rgba(250,249,245,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      padding: 16px 24px 20px; gap: 14px;
+      z-index: 100;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--teal-dark);
+      font-weight: 700; font-size: 15px;
+      padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* --- HERO BAND --- */
+    .gallery-hero {
+      margin-top: var(--nav-h);
+      padding: 64px 24px 32px;
+      text-align: center;
+      max-width: 800px; margin-left: auto; margin-right: auto;
+    }
+    .gallery-hero .section-label {
+      font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 12px;
+    }
+    .gallery-hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.15;
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .gallery-hero p {
+      font-size: 17px;
+      color: var(--text-light);
+      line-height: 1.65;
+      max-width: 600px; margin: 0 auto;
+    }
+
+    /* --- STICKY PROJECT NAV --- */
+    .project-nav {
+      position: sticky; top: var(--nav-h);
+      background: rgba(250,249,245,.92);
+      backdrop-filter: blur(10px);
+      border-top: 1px solid rgba(0,0,0,.06);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      padding: 12px 24px;
+      z-index: 50;
+      overflow-x: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .project-nav-inner {
+      max-width: 1140px; margin: 0 auto;
+      display: flex; gap: 8px;
+      flex-wrap: nowrap;
+    }
+    .project-nav-chip {
+      padding: 8px 16px;
+      background: rgba(58,159,191,.12);
+      color: var(--teal-deep);
+      border-radius: 100px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .3px;
+      white-space: nowrap;
+      transition: background .2s;
+    }
+    .project-nav-chip:hover { background: rgba(58,159,191,.24); }
+
+    /* --- GALLERY PAGE: OPTION B (Curated Wall) --- */
+    .gallery-projects {
+      max-width: 1240px; margin: 0 auto;
+      padding: 32px 24px 80px;
+    }
+    .gallery-project {
+      padding-bottom: 80px;
+      margin-bottom: 80px;
+      border-bottom: 1px solid rgba(0,0,0,.08);
+    }
+    .gallery-project:last-of-type { border-bottom: 0; }
+    .gallery-project-info {
+      text-align: center;
+      margin-bottom: 32px;
+    }
+    .gallery-project-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 5vw, 52px);
+      color: var(--text); line-height: 1.1;
+      margin-bottom: 8px;
+    }
+    .gallery-project-meta {
+      font-size: 12px; color: var(--text-light);
+      letter-spacing: 2px; text-transform: uppercase; font-weight: 700;
+    }
+    .gallery-feature {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16/9;
+      border-radius: 12px;
+      overflow: hidden;
+      margin-bottom: 12px;
+      background: var(--sand);
+      cursor: pointer;
+    }
+    .gallery-feature img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .5s ease;
+    }
+    .gallery-feature:hover img { transform: scale(1.03); }
+    .gallery-project-mosaic {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      grid-auto-rows: 200px;
+      gap: 12px;
+    }
+    .gallery-project-mosaic .project-photo {
+      display: block;
+      border-radius: 12px;
+      overflow: hidden;
+      background: var(--sand);
+      cursor: pointer;
+    }
+    .gallery-project-mosaic .project-photo img {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+      transition: transform .4s ease;
+    }
+    .gallery-project-mosaic .project-photo:hover img { transform: scale(1.04); }
+    .gallery-project-mosaic .span-2 { grid-column: span 2; }
+    @media (max-width: 768px) {
+      .gallery-projects { padding: 24px 20px 64px; }
+      .gallery-project { padding-bottom: 56px; margin-bottom: 56px; }
+      .gallery-feature { aspect-ratio: 4/3; }
+      .gallery-project-mosaic {
+        grid-template-columns: 1fr 1fr;
+        grid-auto-rows: 140px;
+        gap: 8px;
+      }
+      .gallery-project-mosaic .span-2 { grid-column: 1 / 3; grid-row: span 1; }
+    }
+
+    /* --- FOOTER --- */
+    .footer {
+      background: var(--teal-deep);
+      padding: 24px;
+      text-align: center;
+      color: rgba(255,255,255,.6);
+      font-size: 13px;
+    }
+    .footer a { color: var(--neon); text-decoration: none; font-weight: 700; }
+    .footer a:hover { text-decoration: underline; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .nav-links, .nav-phone { display: none; }
+      .menu-btn { display: inline-block; }
+      .nav-logo { height: 60px; margin-bottom: -30px; }
+      .nav-inner { gap: 12px; }
+      .nav-cta { padding: 8px 16px; font-size: 12px; }
+      .gallery-hero { padding: 48px 20px 24px; }
+      .project-nav { padding: 10px 20px; }
+      .gallery-projects { padding: 24px 20px 64px; }
+      .gallery-project { padding-top: 32px; }
+      .gallery-project-grid {
+        grid-template-columns: 1fr 1fr;
+        gap: 8px;
+      }
+      [id] { scroll-margin-top: 120px; }
+    }
+    @media (max-width: 480px) {
+      .gallery-project-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-bg"></div>
+  <div class="nav-inner">
+    <a class="nav-logo-link" href="index.html"><img class="nav-logo" src="monkeyhouse-logo-transparent.png" alt="Monkeyhouse" /></a>
+    <div class="nav-links">
+      <a href="index.html#whats-a-treenet">What's a Treenet?</a>
+      <a href="gallery.html" class="is-current">Our Work</a>
+      <a href="index.html#getanet">Get a Net</a>
+    </div>
+    <div class="nav-right">
+      <span class="nav-phone">(512) 591-8835</span>
+      <a class="nav-cta" href="index.html#getanet">Free Consultation</a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html#whats-a-treenet">What's a Treenet?</a>
+    <a href="gallery.html">Our Work</a>
+    <a href="index.html#getanet">Get a Net</a>
+    <a href="tel:+15125918835">(512) 591-8835</a>
+    <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a>
+  </div>
+</nav>
+
+<!-- HERO BAND -->
+<section class="gallery-hero">
+  <div class="section-label">Our Work</div>
+  <h1>Every treenet is one of a kind</h1>
+  <p>Designed around the trees they hang from. Woven by hand, on-site, over a few weeks. No two are alike.</p>
+</section>
+
+<!-- STICKY PROJECT NAV — bot maintains the chip list -->
+<nav class="project-nav" aria-label="Jump to project">
+  <div class="project-nav-inner">
+    <!-- AUTO-PROJECT-NAV-INSERT-HERE -->
+    <!--
+      Chips maintained by the website-gallery-updater bot. Newest project
+      goes on the left. Each chip:
+      a class=project-nav-chip href=#slug data-project-slug=slug then Title.
+    -->
+    <a class="project-nav-chip" href="#mariposa-montessori-nets" data-project-slug="mariposa-montessori-nets">Mariposa Montessori Nets</a>
+  </div>
+</nav>
+
+<!-- PROJECTS -->
+<main class="gallery-projects">
+
+  <!-- AUTO-GALLERY-INSERT-HERE -->
+  <!--
+    Managed by the website-gallery-updater bot. New project sections are
+    inserted immediately after the AUTO-GALLERY-INSERT-HERE marker
+    (newest project at the top). Each section lives between paired
+    markers: AUTO-PROJECT-START:slug ... AUTO-PROJECT-END:slug. The
+    section contains ALL photos for the project. Manual edits between
+    markers get overwritten on the next bot run.
+  -->
+
+  <!-- AUTO-PROJECT-START:mariposa-montessori-nets -->
+  <section id="mariposa-montessori-nets" class="gallery-project" data-project-slug="mariposa-montessori-nets" data-project-title="Mariposa Montessori Nets">
+    <div class="gallery-project-info">
+      <h2 class="gallery-project-title">Mariposa Montessori Nets</h2>
+      <p class="gallery-project-meta">Austin, TX &middot; 10 photos</p>
+    </div>
+    <a class="project-photo gallery-feature" href="gallery/mariposa-montessori-nets/dsc04040.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04040.jpg">
+      <img src="gallery/mariposa-montessori-nets/dsc04040.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+    </a>
+    <div class="gallery-project-mosaic">
+        <a class="project-photo span-2" href="gallery/mariposa-montessori-nets/dsc04057.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04057.jpg">
+          <img src="gallery/mariposa-montessori-nets/dsc04057.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo " href="gallery/mariposa-montessori-nets/dsc04062.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04062.jpg">
+          <img src="gallery/mariposa-montessori-nets/dsc04062.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo " href="gallery/mariposa-montessori-nets/dsc04071.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04071.jpg">
+          <img src="gallery/mariposa-montessori-nets/dsc04071.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo " href="gallery/mariposa-montessori-nets/dsc04077.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04077.jpg">
+          <img src="gallery/mariposa-montessori-nets/dsc04077.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo span-2" href="gallery/mariposa-montessori-nets/dsc04112.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04112.jpg">
+          <img src="gallery/mariposa-montessori-nets/dsc04112.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo " href="gallery/mariposa-montessori-nets/dsc04132.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04132.jpg">
+          <img src="gallery/mariposa-montessori-nets/dsc04132.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo " href="gallery/mariposa-montessori-nets/dsc04149.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04149.jpg">
+          <img src="gallery/mariposa-montessori-nets/dsc04149.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo " href="gallery/mariposa-montessori-nets/dsc04152.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04152.jpg">
+          <img src="gallery/mariposa-montessori-nets/dsc04152.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+        <a class="project-photo span-2" href="gallery/mariposa-montessori-nets/dsc04157.jpg" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04157.jpg">
+          <img src="gallery/mariposa-montessori-nets/dsc04157.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        </a>
+    </div>
+  </section>
+  <!-- AUTO-PROJECT-END:mariposa-montessori-nets -->
+
+</main>
+
+<!-- FOOTER -->
+<footer class="footer">
+  &copy; <script>document.write(new Date().getFullYear())</script> Monkeyhouse LLC &middot; Austin, TX &middot; <a href="index.html">Home</a>
+</footer>
+
+<script>
+  const menuBtn = document.querySelector('.menu-btn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn?.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.textContent = open ? '✕' : '☰';
+  });
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    });
+  });
+</script>
+<script src="lightbox.js" defer></script>
+</body>
+</html>
