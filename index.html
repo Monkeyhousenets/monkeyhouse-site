@@ -3,161 +3,699 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Monkeyhouse Treenets</title>
-  <meta name="description" content="Custom hand-woven treenets and net furniture. Play, lounge, and explore in the trees." />
+  <title>Monkeyhouse Treenets — Custom Handwoven Treenets in Austin, TX</title>
+  <meta name="description" content="Custom handwoven treenets in Austin, TX. Play, lounge, and explore in the trees." />
   <link rel="canonical" href="https://www.monkeyhousenets.com/" />
-  <link rel="stylesheet" href="styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700;800&family=Libre+Baskerville:wght@700&family=Satisfy&display=swap" rel="stylesheet" />
+  <style>
+    /* === MONKEYHOUSE — based on iteration-2-a ===
+       Editorial foundation, intro band, trust strip, linear How It Works.
+       Videos: explainer = lGE6RxsOahc, fun = nJPGnibpANs */
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
+      color: #1a2a32;
+      background: #faf9f5;
+      line-height: 1.6;
+    }
+
+    :root {
+      --teal: #3a9fbf;
+      --teal-dark: #0e7f92;
+      --teal-deep: #0a5e6e;
+      --neon: #d7ff3a;
+      --cream: #faf9f5;
+      --warm-white: #f3f0e8;
+      --sand: #e4ddd0;
+      --text: #1a2a32;
+      --text-light: #5a6a72;
+      --nav-h: 80px;
+    }
+    [id] {
+      scroll-margin-top: 40px;
+    }
+
+    /* --- NAV --- */
+    .nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      height: var(--nav-h);
+      overflow: visible;
+    }
+    .nav-bg {
+      position: absolute; top: 0; left: 0; right: 0;
+      height: var(--nav-h);
+      background: rgba(250,249,245,.75);
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .nav-inner {
+      max-width: 1140px; margin: 0 auto; padding: 0 24px;
+      display: flex; align-items: center; height: var(--nav-h); gap: 32px;
+      position: relative; z-index: 1;
+    }
+    .nav-logo-link {
+      text-decoration: none;
+      display: flex; align-items: flex-end;
+    }
+    .nav-logo {
+      height: 100px; width: auto;
+      display: block;
+      margin-bottom: -55px;
+    }
+    .nav-links { display: flex; gap: 28px; flex: 1; }
+    .nav-links a {
+      text-decoration: none; color: var(--teal-dark);
+      font-weight: 700; font-size: 13px; letter-spacing: .5px; text-transform: uppercase;
+    }
+    .nav-links a:hover { color: var(--teal-deep); }
+    .nav-right { display: flex; align-items: center; gap: 16px; }
+    .nav-phone { font-weight: 700; font-size: 14px; color: var(--text); }
+    .nav-cta {
+      background: var(--teal-dark); color: var(--neon);
+      padding: 10px 22px; border-radius: 8px; text-decoration: none;
+      font-weight: 800; font-size: 13px; letter-spacing: .3px;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(14,127,146,.3); }
+
+    /* --- HERO --- */
+    .hero {
+      margin-top: var(--nav-h);
+      min-height: calc(100vh - var(--nav-h));
+      background: linear-gradient(170deg, rgba(0,0,0,.25) 0%, rgba(0,0,0,.10) 60%), url("hero.jpg");
+      background-size: cover; background-position: center 40%;
+      display: flex; align-items: flex-end;
+      padding: 0 24px 80px;
+    }
+    .hero-content { max-width: 1140px; margin: 0 auto; width: 100%; }
+    .hero-badge {
+      display: inline-block; background: rgba(255,255,255,.15);
+      backdrop-filter: blur(6px);
+      border: 1px solid rgba(255,255,255,.2);
+      padding: 6px 16px; border-radius: 100px;
+      color: #fff; font-size: 13px; font-weight: 600; letter-spacing: .3px;
+      margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(42px, 6vw, 72px);
+      color: #fff; line-height: 1.1; max-width: 700px;
+      text-shadow: 0 4px 30px rgba(0,0,0,.4);
+      margin-bottom: 16px;
+    }
+    .hero p {
+      color: rgba(255,255,255,.9);
+      font-size: 18px; max-width: 520px; line-height: 1.6;
+      text-shadow: 0 2px 10px rgba(0,0,0,.3);
+      margin-bottom: 28px;
+    }
+    .hero-ctas { display: flex; gap: 14px; flex-wrap: wrap; }
+    .btn-primary {
+      display: inline-block;
+      background: var(--neon); color: var(--teal-deep);
+      padding: 16px 36px; border-radius: 10px;
+      font-weight: 800; font-size: 16px; text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+      box-shadow: 0 8px 30px rgba(0,0,0,.2);
+    }
+    .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,.3); }
+    .btn-secondary {
+      display: inline-block;
+      background: rgba(0,0,0,.35); color: #fff;
+      border: 2px solid rgba(255,255,255,.5);
+      backdrop-filter: blur(6px);
+      padding: 14px 32px; border-radius: 10px;
+      font-weight: 700; font-size: 16px; text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .btn-secondary:hover { border-color: #fff; background: rgba(0,0,0,.5); }
+
+    /* --- INTRO BAND --- */
+    .intro-band {
+      background: var(--teal-deep); color: #fff;
+      text-align: center; padding: 32px 24px;
+    }
+    .intro-band p {
+      max-width: 720px; margin: 0 auto; line-height: 1.55;
+    }
+    .band-formal {
+      font-family: 'Libre Baskerville', serif;
+      font-size: clamp(26px, 4vw, 42px);
+      font-weight: 700; color: rgba(255,255,255,.92);
+      margin: 0; line-height: 1.3;
+    }
+    .band-formal em { font-style: normal; color: var(--neon); }
+    .band-amp {
+      font-size: 22px; color: rgba(255,255,255,.5);
+      margin: 4px 0;
+    }
+    .band-playful {
+      font-family: 'Satisfy', cursive;
+      font-size: clamp(40px, 6vw, 66px);
+      color: rgba(255,255,255,.92);
+      margin: 0; line-height: 1.3;
+    }
+    .band-playful em { font-style: normal; color: var(--neon); }
+
+    /* --- SECTIONS --- */
+    section { padding: 80px 24px; }
+    .section-inner { max-width: 1140px; margin: 0 auto; }
+    .section-label {
+      font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--teal); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'DM Serif Display', serif;
+      font-size: clamp(32px, 4vw, 48px);
+      color: var(--text); line-height: 1.15; margin-bottom: 20px;
+    }
+    .section-body { font-size: 17px; color: var(--text-light); max-width: 620px; line-height: 1.7; }
+
+    /* --- WHAT'S A TREENET --- */
+    .whats-section { background: var(--cream); }
+    .whats-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; margin-top: 40px; }
+    .whats-video {
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.08);
+    }
+    .whats-video iframe { width: 100%; aspect-ratio: 16/9; display: block; border: 0; }
+    .whats-quote {
+      font-family: 'DM Serif Display', serif;
+      font-size: 22px; color: var(--teal-deep); line-height: 1.5;
+      border-left: 3px solid var(--teal); padding-left: 24px; margin-top: 24px;
+      font-style: italic;
+    }
+
+    /* --- ABOUT TIM (currently hidden — see TODO below) --- */
+    .about-section { background: var(--warm-white); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1.2fr; gap: 52px;
+      align-items: center; margin-top: 40px;
+    }
+    .about-photo {
+      aspect-ratio: 3/4; border-radius: 12px;
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.5); font-size: 15px; font-weight: 600;
+      box-shadow: 0 20px 60px rgba(0,0,0,.08);
+      overflow: hidden;
+    }
+    .about-photo img { width: 100%; height: 100%; object-fit: cover; display: block; }
+    .about-text blockquote {
+      font-family: 'DM Serif Display', serif;
+      font-size: 20px; line-height: 1.55; color: var(--teal-deep);
+      border-left: 3px solid var(--teal); padding-left: 22px; margin-top: 24px;
+      font-style: italic;
+    }
+
+    /* --- HOW IT WORKS --- */
+    .how-section { background: var(--cream); }
+    .how-steps {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
+      margin-top: 48px; position: relative;
+    }
+    .how-steps::before {
+      content: ''; position: absolute; top: 28px; left: 10%; right: 10%;
+      height: 2px; background: var(--sand);
+    }
+    .how-step { text-align: center; position: relative; padding: 0 16px; }
+    .how-num {
+      width: 56px; height: 56px; border-radius: 50%;
+      background: #fff; border: 3px solid var(--teal);
+      color: var(--teal-deep); font-weight: 900; font-size: 22px;
+      display: inline-flex; align-items: center; justify-content: center;
+      margin-bottom: 18px; position: relative; z-index: 2;
+      box-shadow: 0 4px 12px rgba(0,0,0,.06);
+    }
+    .how-step h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: var(--text); }
+    .how-step p { font-size: 14px; color: var(--text-light); line-height: 1.55; }
+
+    /* --- TRUST STRIP --- */
+    .trust-strip { background: rgba(58,159,191,.18); padding: 56px 24px; }
+    .trust-icons {
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
+      max-width: 1140px; margin: 0 auto; text-align: center;
+    }
+    .trust-icon {
+      width: 52px; height: 52px; border-radius: 50%;
+      background: var(--teal); color: #fff;
+      display: inline-flex; align-items: center; justify-content: center;
+      font-size: 24px; margin-bottom: 12px;
+    }
+    .trust-item h4 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .trust-item p { font-size: 13px; color: var(--text-light); line-height: 1.4; }
+
+    /* --- FUN VIDEO --- */
+    .fun-video-section { background: var(--warm-white); text-align: center; }
+    .fun-video-wrap {
+      max-width: 780px; margin: 32px auto 0;
+      border-radius: 12px; overflow: hidden;
+      box-shadow: 0 20px 60px rgba(0,0,0,.08);
+    }
+    .fun-video-wrap iframe { width: 100%; aspect-ratio: 16/9; display: block; border: 0; }
+
+    /* --- GALLERY --- */
+    .gallery-section { background: var(--cream); }
+    .gallery-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 48px; }
+    .gallery-item {
+      aspect-ratio: 4/3; border-radius: 12px; overflow: hidden;
+      background-size: cover; background-position: center;
+      transition: transform .3s; cursor: pointer;
+    }
+    .gallery-item:hover { transform: scale(1.02); }
+    .gallery-item.feature { grid-column: span 2; aspect-ratio: 2/1; }
+    .gallery-placeholder {
+      background: linear-gradient(135deg, var(--teal) 0%, var(--teal-deep) 100%);
+      display: flex; align-items: center; justify-content: center;
+      color: rgba(255,255,255,.45); font-size: 14px; font-weight: 600;
+    }
+
+    /* --- TESTIMONIALS (currently hidden — see TODO below) --- */
+    .testimonials-section { background: var(--teal-deep); color: #fff; }
+    .testimonials-section .section-label { color: var(--neon); }
+    .testimonials-section .section-title { color: #fff; }
+    .testimonial-cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .testimonial-card {
+      background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12);
+      border-radius: 16px; padding: 32px;
+    }
+    .testimonial-stars { color: var(--neon); font-size: 18px; margin-bottom: 16px; letter-spacing: 2px; }
+    .testimonial-text { font-size: 15px; line-height: 1.7; color: rgba(255,255,255,.88); margin-bottom: 20px; }
+    .testimonial-author { font-weight: 700; font-size: 14px; }
+    .testimonial-location { font-size: 13px; color: rgba(255,255,255,.5); }
+
+    /* --- GET A NET --- */
+    .getanet-section { background: var(--cream); }
+    .form-container { max-width: 560px; margin: 40px auto 0; }
+    .form-container label {
+      display: flex; flex-direction: column; gap: 6px;
+      font-size: 14px; font-weight: 600; color: var(--text); margin-bottom: 16px;
+    }
+    .form-container input,
+    .form-container select,
+    .form-container textarea {
+      padding: 14px 16px; border: 1px solid #d0d5d8;
+      border-radius: 10px; font-size: 15px; font-family: inherit;
+      background: #fff; color: var(--text); transition: border-color .2s;
+    }
+    .form-container input:focus,
+    .form-container select:focus,
+    .form-container textarea:focus {
+      outline: none; border-color: var(--teal);
+      box-shadow: 0 0 0 3px rgba(58,159,191,.15);
+    }
+    .form-container input::placeholder,
+    .form-container textarea::placeholder { color: #a0a8ae; }
+    .form-container textarea { resize: vertical; }
+    .form-container select { appearance: auto; }
+    .form-submit {
+      width: 100%; padding: 16px; border: 0; border-radius: 10px;
+      background: var(--teal-dark); color: var(--neon);
+      font-weight: 800; font-size: 16px; cursor: pointer;
+      transition: transform .2s, box-shadow .2s; margin-top: 8px;
+    }
+    .form-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(14,127,146,.25); }
+
+    /* --- CONTACT --- */
+    .contact-section { background: var(--warm-white); }
+    .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; margin-top: 40px; }
+    .contact-info h3 { font-family: 'DM Serif Display', serif; font-size: 28px; margin-bottom: 20px; }
+    .contact-info a {
+      display: block; color: var(--teal-dark); text-decoration: none;
+      font-weight: 600; font-size: 17px; margin-bottom: 12px;
+    }
+    .contact-info a:hover { color: var(--teal-deep); }
+    .contact-area { color: var(--text-light); margin-top: 12px; font-size: 15px; }
+    .contact-socials { display: flex; gap: 12px; margin-top: 20px; }
+    .contact-socials a {
+      width: 40px; height: 40px; border-radius: 10px; background: var(--teal);
+      display: flex; align-items: center; justify-content: center;
+      color: #fff; text-decoration: none; transition: transform .2s;
+    }
+    .contact-socials a:hover { transform: translateY(-2px); }
+    .contact-socials svg { width: 20px; height: 20px; fill: currentColor; }
+    .contact-form { display: flex; flex-direction: column; gap: 16px; }
+    .contact-form label {
+      display: flex; flex-direction: column; gap: 6px;
+      font-size: 14px; font-weight: 600;
+    }
+    .contact-form input,
+    .contact-form textarea {
+      padding: 14px 16px; border: 1px solid #d0d5d8;
+      border-radius: 10px; font-size: 15px; font-family: inherit;
+      background: #fff; color: var(--text); transition: border-color .2s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { outline: none; border-color: var(--teal); }
+
+    /* --- FOOTER --- */
+    .footer {
+      background: var(--teal-deep); padding: 24px;
+      text-align: center; color: rgba(255,255,255,.6); font-size: 13px;
+    }
+
+    /* --- MOBILE MENU --- */
+    .menu-btn {
+      display: none; border: 0;
+      background: rgba(0,0,0,.06); border-radius: 8px;
+      width: 44px; height: 38px; font-size: 20px;
+      cursor: pointer; color: var(--text);
+    }
+    .mobile-menu {
+      display: none; flex-direction: column;
+      position: absolute; top: var(--nav-h); left: 0; right: 0;
+      background: rgba(250,249,245,.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(0,0,0,.08);
+      padding: 16px 24px 20px; gap: 14px;
+      z-index: 100;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      text-decoration: none; color: var(--teal-dark);
+      font-weight: 700; font-size: 15px;
+      padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .mobile-menu a:last-child { border-bottom: none; }
+
+    /* --- RESPONSIVE --- */
+    @media (max-width: 768px) {
+      .nav-links, .nav-phone { display: none; }
+      .menu-btn { display: inline-block; }
+      .nav-logo { height: 60px; margin-bottom: -30px; }
+      .nav-inner { gap: 12px; }
+      .nav-cta { padding: 8px 16px; font-size: 12px; }
+
+      .hero { min-height: 80vh; padding: 0 20px 60px; }
+      .hero h1 { font-size: clamp(32px, 8vw, 48px); }
+      .hero p { font-size: 16px; }
+      .hero-ctas { flex-direction: column; gap: 12px; align-items: flex-start; }
+      .btn-primary, .btn-secondary {
+        text-align: center; width: auto;
+        padding: 14px 24px; font-size: 15px;
+      }
+
+      .intro-band { padding: 24px 20px; }
+      .band-formal { font-size: clamp(20px, 5vw, 30px); }
+      .band-playful { font-size: clamp(30px, 8vw, 48px); }
+      .band-amp { font-size: 18px; }
+
+      section { padding: 56px 20px; }
+      .section-title { font-size: clamp(26px, 6vw, 36px); }
+
+      .whats-grid { grid-template-columns: 1fr; gap: 28px; }
+      .whats-quote { font-size: 18px; }
+
+      .trust-strip { padding: 40px 20px; }
+      .trust-icons { grid-template-columns: 1fr 1fr; gap: 24px; }
+
+      .about-grid { grid-template-columns: 1fr; gap: 28px; }
+      .about-photo { aspect-ratio: 4/3; max-height: 300px; }
+      .about-text blockquote { font-size: 18px; }
+
+      .how-steps { grid-template-columns: 1fr 1fr; gap: 24px; }
+      .how-steps::before { display: none; }
+      .how-num { width: 48px; height: 48px; font-size: 20px; }
+
+      .gallery-grid { grid-template-columns: 1fr; gap: 12px; }
+      .gallery-item.feature { grid-column: span 1; aspect-ratio: 16/9; }
+
+      .testimonial-cards { grid-template-columns: 1fr; gap: 16px; }
+      .testimonial-card { padding: 24px; }
+
+      .form-container { max-width: 100%; }
+      .form-container input,
+      .form-container select,
+      .form-container textarea { font-size: 16px; }
+
+      .contact-grid { grid-template-columns: 1fr; gap: 32px; }
+      .contact-info { text-align: center; }
+      .contact-socials { justify-content: center; }
+
+      .footer { padding: 20px 16px; }
+    }
+  </style>
 </head>
-
 <body>
-  <!-- Top glass nav (matches screenshots) -->
-  <header class="topbar">
-    <div class="topbar-inner">
-      <a class="logo" href="#home" aria-label="Monkeyhouse home">
-  	<img class="logo-img" src="monkeyhouse-logo-transparent.png" alt="Monkeyhouse" />
-      </a>
 
-
-      <nav class="navlinks" aria-label="Primary">
-        <a href="#whats-a-treenet">WHAT’S A TREENET?</a>
-        <a href="#getanet">GET A NET</a>
-        <a href="#contact">CONTACT</a>
-      </nav>
-
-      <div class="navright">
-        <a class="icon" href="https://www.instagram.com/monkeyhousenets" target="_blank" rel="noopener" aria-label="Instagram">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/>
-            <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
-            <path d="M17.5 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-          </svg>  
-        </a>
-        <a class="icon" href="https://www.facebook.com/profile.php?id=61556323751576" target="_blank" rel="noopener" aria-label="Facebook">
-          <svg viewBox="0 0 24 24" aria-hidden="true">
-            <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.6V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V11H7v3h2.1v8h4.4z"/>
-          </svg>
-        </a>
-        <a class="icon" href="#contact" aria-label="Contact">✉</a>
-        <div class="phone">(512) 591 - 8835</div>
-
-        <button class="menuBtn" aria-label="Open menu" aria-expanded="false">☰</button>
-      </div>
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-bg"></div>
+  <div class="nav-inner">
+    <a class="nav-logo-link" href="#"><img class="nav-logo" src="monkeyhouse-logo-transparent.png" alt="Monkeyhouse" /></a>
+    <div class="nav-links">
+      <a href="#whats-a-treenet">What's a Treenet?</a>
+      <!-- TODO post-launch: re-enable <a href="#about">About</a> once the About Tim section is unhidden -->
+      <a href="#gallery">Our Work</a>
+      <a href="#getanet">Get a Net</a>
     </div>
-
-    <div class="mobileMenu" id="mobileMenu">
-      <a href="#whats-a-treenet">WHAT’S A TREENET?</a>
-      <a href="#getanet">GET A NET</a>
-      <a href="#contact">CONTACT</a>
-      <a href="tel:+15125918835">(512) 591-8835</a>
-      <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a>
+    <div class="nav-right">
+      <span class="nav-phone">(512) 591-8835</span>
+      <a class="nav-cta" href="#getanet">Free Consultation</a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     </div>
-  </header>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#whats-a-treenet">What's a Treenet?</a>
+    <!-- TODO post-launch: re-enable <a href="#about">About</a> -->
+    <a href="#gallery">Our Work</a>
+    <a href="#getanet">Get a Net</a>
+    <a href="tel:+15125918835">(512) 591-8835</a>
+    <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a>
+  </div>
+</nav>
 
-  <!-- HERO (homepage) -->
-  <section id="home" class="hero hero-home">
-  <div class="hero-overlay">
-    <div class="hero-grid">
-      <!-- Left: big Contact button -->
-      <div class="hero-left">
-        <a class="btn btn-teal hero-contact" href="#contact">Contact</a>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <div class="hero-badge">Handwoven in Austin, TX</div>
+    <h1>Giant rope playgrounds built in your trees</h1>
+    <p>Custom handwoven rope structures suspended between your trees — completely unique to your space, built to last, and an absolute blast for every age.</p>
+    <div class="hero-ctas">
+      <a class="btn-primary" href="#getanet">Get a Free Consultation</a>
+      <a class="btn-secondary" href="#whats-a-treenet">What's a Treenet?</a>
+    </div>
+  </div>
+</section>
+
+<!-- INTRO BAND -->
+<div class="intro-band">
+  <p class="band-formal"><em>Out</em> of the house</p>
+  <p class="band-amp">&amp;</p>
+  <p class="band-playful">Into the <em>trees</em></p>
+</div>
+
+<!-- WHAT'S A TREENET -->
+<section id="whats-a-treenet" class="whats-section">
+  <div class="section-inner">
+    <div class="section-label">What's a Treenet?</div>
+    <h2 class="section-title">A handwoven world between your trees</h2>
+    <div class="whats-grid">
+      <div>
+        <p class="section-body">
+          Picture a giant net woven from climbing-grade rope, strung between the trees in your backyard. You can bounce on it, nap in it, do backflips off the walls — and it's all built by hand, on-site, shaped around whatever your trees make possible.
+        </p>
+        <p class="section-body" style="margin-top: 16px;">
+          Every piece of hardware is rated for climbing. The whole structure is engineered to hold — as solid as the oaks it hangs from.
+        </p>
+        <p class="whats-quote">
+          "It's bouncy like a trampoline, loungy like a hammock. It fits in the environment and it just feels like you're at home in a tree."
+        </p>
       </div>
-
-      <!-- Center/top: big logo -->
-      <div class="hero-center">
-        <img class="hero-logo" src="monkeyhouse-logo-transparent.png" alt="Monkeyhouse" />
-      </div>
-
-      <!-- Right: tagline block -->
-      <div class="hero-right">
-        <div class="hero-tagline">
-          <div class="tagline-title">Unparalleled Play &amp; Comfort</div>
-          <div class="tagline-sub">
-            Elevate your world with handcrafted treenets and monkeycouches — custom woven spaces for play,
-            lounging, and adventure.
-          </div>
-        </div>
+      <div class="whats-video">
+        <iframe
+          loading="lazy"
+          src="https://www.youtube-nocookie.com/embed/nJPGnibpANs?rel=0&modestbranding=1"
+          title="The Ultimate Treenet Experience"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen>
+        </iframe>
       </div>
     </div>
   </div>
 </section>
 
-  <!-- VIDEO STRIP (optional — you can replace src later) -->
-  <section class="strip teal">
-    <div class="strip-inner">
-      <div class="videoWrap" id="whats-a-treenet">
-        <iframe
-  	      loading="lazy"
- 	        referrerpolicy="strict-origin-when-cross-origin"
- 	        src="https://www.youtube-nocookie.com/embed/nJPGnibpANs?rel=0&modestbranding=1&playsinline=1"
- 	        title="How Fun Is Monkeyhouse?"
- 	        frameborder="0"
- 	        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
- 	        allowfullscreen>
-	      </iframe>
-      </div>
-
-      <div class="videoWrap">
-        <iframe
- 	        loading="lazy"
-  	       referrerpolicy="strict-origin-when-cross-origin"
- 	         src="https://www.youtube-nocookie.com/embed/lGE6RxsOahc?rel=0&modestbranding=1&playsinline=1"
-        	 title="The Ultimate Treenet Experience"
- 	         frameborder="0"
- 	         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
- 	         allowfullscreen>
-	      </iframe>
-      </div>
+<!-- TRUST STRIP -->
+<section class="trust-strip">
+  <div class="trust-icons">
+    <div class="trust-item">
+      <div class="trust-icon">&#128170;</div>
+      <h4>As Strong as Your Trees</h4>
+      <p>UIAA-rated climbing materials</p>
     </div>
-  </section>
-
-  <!-- Safety header, Rebuild Later? Include Tree protection? -->
-
-  <!-- GET A NET (big form like screenshot) -->
-  <section id="getanet" class="sectionHeader" style="--headerText: 'Get a Net';">
-    <div class="sectionHeader-inner">
-      <h2 class="bigYellow">Get a Net</h2>
+    <div class="trust-item">
+      <div class="trust-icon">&#127795;</div>
+      <h4>Tree-Safe</h4>
+      <p>Spacers to keep trees healthy</p>
     </div>
-  </section>
+    <div class="trust-item">
+      <div class="trust-icon">&#9997;</div>
+      <h4>Handwoven</h4>
+      <p>Every knot tied on-site by hand</p>
+    </div>
+    <div class="trust-item">
+      <div class="trust-icon">&#127912;</div>
+      <h4>Completely Custom</h4>
+      <p>Your trees, your colors, your net</p>
+    </div>
+  </div>
+</section>
 
-<section class="strip teal">
-  <div class="strip-inner formCenter">
-
-    <h3 class="formHeading">
-      Let us know what you'd like us to weave and we'll<br />
-      start dreaming something up for you!
-    </h3>
-
-    <div class="formStage" id="getanet-stage">
-
-      <!-- Netlify form -->
-      <form 
-        name="get-a-net" netlify
-        method="POST"
-        data-netlify="true"
-        data-netlify-honeypot="bot-field"
-        class="bigForm"
-      >
-        <input type="hidden" name="form-name" value="get-a-net" />
-
-        <p hidden>
-          <label>
-            Don’t fill this out:
-            <input name="bot-field" />
-          </label>
+<!-- ============================================================
+     TODO (post-launch): ABOUT TIM
+     Hidden until Tim has a real headshot.
+     To re-enable:
+       1. Uncomment the <section> block below.
+       2. Inside .about-photo, replace the placeholder text with:
+            <img src="tim-photo.jpg" alt="Tim, builder of Monkeyhouse treenets" />
+          (drop the photo file into this folder).
+       3. Re-enable the "About" link in the nav (two spots: desktop + mobile).
+     ============================================================ -->
+<!--
+<section id="about" class="about-section">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-photo">Photo of Tim</div>
+      <div class="about-text">
+        <div class="section-label">The Builder</div>
+        <h2 class="section-title">Built by hand, with love for the craft</h2>
+        <p class="section-body">
+          Tim is a highliner, rope nerd, and the person behind every Monkeyhouse treenet. He weaves every net by hand, on-site, working with the trees to create something that's completely unique to your space.
         </p>
+        <p class="section-body" style="margin-top: 12px;">
+          Every detail matters — from the hardware that protects your trees to the paracord patterns that catch the light. These aren't products. They're handmade places to play, lounge, and feel wonder.
+        </p>
+        <blockquote>
+          "Every treenet is so much fun to build because it's dependent on the trees — you work with the tree and the tree tells you what's possible."
+        </blockquote>
+      </div>
+    </div>
+  </div>
+</section>
+-->
 
-        <label>Full name
-          <input name="full_name" type="text" required />
-        </label>
+<!-- HOW IT WORKS -->
+<section id="how-it-works" class="how-section">
+  <div class="section-inner">
+    <div class="section-label">How It Works</div>
+    <h2 class="section-title">From your trees to your treenet</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <h3>Reach Out</h3>
+        <p>Tell us about your trees and your vision. We'll chat about what's possible.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <h3>Design Visit</h3>
+        <p>Tim comes to your property, meets your trees, and designs something custom for the space.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <h3>Handwoven Build</h3>
+        <p>Every knot tied by hand, every rope rated for climbing. Built on-site over a few weeks.</p>
+      </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <h3>Go Play</h3>
+        <p>Backflips, naps, forts, stargazing. It's yours to enjoy for years to come.</p>
+      </div>
+    </div>
+  </div>
+</section>
 
-        <label>Email *
-          <input name="email" type="email" required placeholder="e.g., name@example.com" />
-        </label>
+<!-- FUN VIDEO -->
+<section class="fun-video-section">
+  <div class="section-inner" style="text-align: center;">
+    <div class="section-label">See It In Action</div>
+    <h2 class="section-title">How fun is a monkeyhouse?</h2>
+    <div class="fun-video-wrap">
+      <iframe
+        loading="lazy"
+        src="https://www.youtube-nocookie.com/embed/lGE6RxsOahc?rel=0&modestbranding=1"
+        title="How Fun Is Monkeyhouse?"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+</section>
 
-        <label>Phone
-          <input name="phone" type="tel" placeholder="e.g., 555-555-5555" />
-        </label>
+<!-- GALLERY
+     TODO post-launch: expand gallery as more install photos come in.
+     The grid is set up as: 1 feature item (spans 2 cols) + N regular items.
+     For a future agent / gallery auto-updater: append more
+     <div class="gallery-item" style="background-image: url('FILE.jpg');"></div>
+     entries below. Feature item should be the strongest hero shot. -->
+<section id="gallery" class="gallery-section">
+  <div class="section-inner">
+    <div class="section-label">Our Work</div>
+    <h2 class="section-title">Every net is one of a kind</h2>
+    <p class="section-body">Designed around the trees. Built by hand. No two are alike.</p>
+    <div class="gallery-grid">
+      <div class="gallery-item feature" style="background-image: url('hero.jpg');"></div>
+      <div class="gallery-item" style="background-image: url('rope.jpg');"></div>
+      <!-- TODO: drop more install photos in this folder and add entries like:
+      <div class="gallery-item" style="background-image: url('install-XYZ.jpg');"></div>
+      -->
+    </div>
+  </div>
+</section>
 
+<!-- ============================================================
+     TODO (post-launch): TESTIMONIALS
+     Hidden until Tim has real reviews from real clients.
+     To re-enable:
+       1. Replace each placeholder card below with a real quote,
+          author name, and city.
+       2. Uncomment the <section> block.
+     Quote template lives below so future entries match the layout.
+     ============================================================ -->
+<!--
+<section class="testimonials-section">
+  <div class="section-inner">
+    <div class="section-label">What People Say</div>
+    <h2 class="section-title">The kids haven't come inside since</h2>
+    <div class="testimonial-cards">
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"REAL QUOTE GOES HERE."</p>
+        <div class="testimonial-author">— Real Client Name</div>
+        <div class="testimonial-location">City, TX</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"REAL QUOTE GOES HERE."</p>
+        <div class="testimonial-author">— Real Client Name</div>
+        <div class="testimonial-location">City, TX</div>
+      </div>
+      <div class="testimonial-card">
+        <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+        <p class="testimonial-text">"REAL QUOTE GOES HERE."</p>
+        <div class="testimonial-author">— Real Client Name</div>
+        <div class="testimonial-location">City, TX</div>
+      </div>
+    </div>
+  </div>
+</section>
+-->
+
+<!-- GET A NET -->
+<section id="getanet" class="getanet-section">
+  <div class="section-inner" style="text-align: center;">
+    <div class="section-label">Get a Net</div>
+    <h2 class="section-title">Let's build something amazing in your trees</h2>
+    <p class="section-body" style="margin: 0 auto 8px;">Tell us about your space and we'll start dreaming something up for you.</p>
+    <div class="form-container">
+      <form name="get-a-net" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+        <input type="hidden" name="form-name" value="get-a-net" />
+        <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
+        <label>Full name <input name="full_name" type="text" required /></label>
+        <label>Email <input name="email" type="email" required placeholder="name@example.com" /></label>
+        <label>Phone <input name="phone" type="tel" placeholder="555-555-5555" /></label>
         <label>How would you like to be contacted?
           <select name="contact_method">
             <option value="">Choose an option</option>
@@ -166,217 +704,69 @@
             <option>Text</option>
           </select>
         </label>
-
-        <label>Where are you located?
-          <input name="location" type="text" placeholder="city, state, country" />
+        <label>Where are you located? <input name="location" type="text" placeholder="City, State" /></label>
+        <label>Tell us about the treenet you'd like us to build
+          <textarea name="project_details" rows="4" placeholder="How many trees? Who would use it? What are you imagining?"></textarea>
         </label>
-
-        <label>
-          Tell us about the treenet you'd like us to build.
-          <span style="font-weight:400; opacity:.8;">
-            (e.g. How many trees? Who would use it?)
-          </span>
-          <textarea
-            name="project_details"
-            rows="5"
-            placeholder="Example: 3 trees, mostly kids ages 6–10, want something bouncy but safe."
-          ></textarea>
-        </label>
-
-        <label>How did you hear about us?
-          <input name="referral" type="text" placeholder="Instagram, word of mouth, saw a net, etc." />
-        </label>
-
-        <button class="btn btn-white" type="submit">Send</button>
+        <label>How did you hear about us? <input name="referral" type="text" placeholder="Instagram, word of mouth, saw a net, etc." /></label>
+        <button class="form-submit" type="submit">Send My Request</button>
       </form>
-
-      <!-- Success message -->
-      <div class="formSuccess" hidden>
-        <h3>Thanks — we got your request!</h3>
-        <p>We’ll review your info and get back to you shortly.</p>
-      </div>
-
     </div>
   </div>
 </section>
 
-  <!-- CONTACT (split layout like screenshot) -->
-  <section id="contact" class="sectionHeader" style="--headerText: 'Contact';">
-    <div class="sectionHeader-inner">
-      <h2 class="bigYellow">Contact</h2>
-    </div>
-  </section>
-
-  <section class="strip teal">
-    <div class="strip-inner contactSplit">
-      <div class="contactLeft">
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
         <h3>Get in Touch</h3>
-        <div class="contactInfo">
-          <a href="tel:+15125918835">(512) 591 - 8835</a>
-          <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a>
-          <div class="contactIcons">
-            <a class="icon" href="https://www.instagram.com/monkeyhousenets" target="_blank" rel="noopener" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-               <path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/>
-                <path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/>
-                <path d="M17.5 6.5a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-              </svg>
-            </a>
-            <a class="icon" href="https://www.facebook.com/profile.php?id=61556323751576" target="_blank" rel="noopener" aria-label="Facebook">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.6V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V11H7v3h2.1v8h4.4z"/>
-              </svg>
-            </a>
-          </div>
+        <a href="tel:+15125918835">(512) 591-8835</a>
+        <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a>
+        <p class="contact-area">Austin, TX &amp; Hill Country area</p>
+        <div class="contact-socials">
+          <a href="https://www.instagram.com/monkeyhousenets" target="_blank" rel="noopener" aria-label="Instagram">
+            <svg viewBox="0 0 24 24"><path d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm10 2H7a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3z"/><path d="M12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 2a3 3 0 1 0 0 6 3 3 0 0 0 0-6z"/><circle cx="17.5" cy="6.5" r="1"/></svg>
+          </a>
+          <a href="https://www.facebook.com/profile.php?id=61556323751576" target="_blank" rel="noopener" aria-label="Facebook">
+            <svg viewBox="0 0 24 24"><path d="M13.5 22v-8h2.7l.4-3h-3.1V9.1c0-.9.3-1.6 1.6-1.6h1.6V5c-.3 0-1.4-.1-2.7-.1-2.7 0-4.5 1.6-4.5 4.6V11H7v3h2.1v8h4.4z"/></svg>
+          </a>
         </div>
       </div>
-      <div class="contactRight">
-        <h3 class="formHeading2">Give us a call or send a message below.</h3>
-
-        <form 
-          name="contact" netlify
-          method="POST" 
-          data-netlify="true"
-          data-netlify-honeypot="bot-field-contact" 
-          class="contactForm"
-        >
+      <div class="contact-form">
+        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field-contact">
           <input type="hidden" name="form-name" value="contact" />
-            <p hidden>
-              <label>Don’t fill this out:
-                <input name="bot-field-contact" />
-              </label>
-            </p>
-
-          <label>Full Name
-            <input name="name" type="text" required />
-          </label>
-
-          <label>Email *
-            <input name="email" type="email" required />
-          </label>
-
-          <label>Message
-            <textarea name="message" rows="6" required></textarea>
-          </label>
-
-          <button class="btn btn-teal wide" type="submit">Send</button>
+          <p hidden><label>Don't fill this out: <input name="bot-field-contact" /></label></p>
+          <label>Full Name <input name="name" type="text" required /></label>
+          <label>Email <input name="email" type="email" required /></label>
+          <label>Message <textarea name="message" rows="5" required></textarea></label>
+          <button class="form-submit" type="submit">Send Message</button>
         </form>
-
-        <div class="formSuccess" hidden>
-          <h3>Thanks — message sent!</h3>
-            <p>We’ll get back to you shortly.</p>
-        </div>
       </div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <footer class="footer">
-    <div class="footer-inner">© <span id="y"></span> by monkeyhouse</div>
-  </footer>
+<!-- FOOTER -->
+<footer class="footer">
+  &copy; <script>document.write(new Date().getFullYear())</script> Monkeyhouse LLC &middot; Austin, TX
+</footer>
 
 <script>
-  document.getElementById("y").textContent = new Date().getFullYear();
-
-  const btn = document.querySelector(".menuBtn");
-  const menu = document.getElementById("mobileMenu");
-  btn?.addEventListener("click", () => {
-    const open = menu.classList.toggle("open");
-    btn.setAttribute("aria-expanded", open ? "true" : "false");
+  const menuBtn = document.querySelector('.menu-btn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn?.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.textContent = open ? '✕' : '☰';
   });
-
-  // -------- GET A NET --------
-  const netForm = document.querySelector('form[name="get-a-net"]');
-
-  if (netForm) {
-    netForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const submitBtn = netForm.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.dataset.originalText = submitBtn.textContent;
-        submitBtn.textContent = "Sending...";
-      }
-
-      const formData = new FormData(netForm);
-
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(() => {
-        const stage = document.getElementById("getanet-stage");
-        const success = document.querySelector("#getanet-stage .formSuccess");
-        const y = window.scrollY; // lock current scroll position
-
-        if (stage) {
-          // lock height so the page doesn't jump
-          stage.style.minHeight = stage.offsetHeight + "px";
-          stage.classList.add("is-sent");
-        }
-
-        // hide form + show success
-        netForm.hidden = true;
-        if (success) success.hidden = false;
-
-        // restore scroll position after DOM changes
-        requestAnimationFrame(() => window.scrollTo(0, y));
-
-        // release height lock after animation
-        setTimeout(() => {
-          if (stage) stage.style.minHeight = "";
-        }, 400);
-      })
-      .catch(() => {
-        alert("Something went wrong. Please try again.");
-      })
-      .finally(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = submitBtn.dataset.originalText || "Send";
-        }
-      });
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
     });
-  }
-
-  // -------- CONTACT --------
-  const contactForm = document.querySelector('form[name="contact"]');
-
-  if (contactForm) {
-    contactForm.addEventListener("submit", (e) => {
-      e.preventDefault();
-
-      const submitBtn = contactForm.querySelector('button[type="submit"]');
-      if (submitBtn) {
-        submitBtn.disabled = true;
-        submitBtn.dataset.originalText = submitBtn.textContent;
-        submitBtn.textContent = "Sending...";
-      }
-
-      const formData = new FormData(contactForm);
-
-      fetch("/", {
-        method: "POST",
-        headers: { "Content-Type": "application/x-www-form-urlencoded" },
-        body: new URLSearchParams(formData).toString()
-      })
-      .then(() => {
-        contactForm.hidden = true;
-        const success = contactForm.parentElement?.querySelector(".formSuccess");
-        if (success) success.hidden = false;
-      })
-      .catch(() => {
-        alert("Message failed to send. Please try again.");
-      })
-      .finally(() => {
-        if (submitBtn) {
-          submitBtn.disabled = false;
-          submitBtn.textContent = submitBtn.dataset.originalText || "Send";
-        }
-      });
-    });
-  }
+  });
 </script>
 </body>
 </html>
