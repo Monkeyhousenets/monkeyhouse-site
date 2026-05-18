@@ -269,12 +269,12 @@
     .project-header-left { display: flex; flex-direction: column; gap: 6px; }
     .project-title {
       font-family: 'DM Serif Display', serif;
-      font-size: clamp(26px, 3vw, 36px);
-      color: var(--text); line-height: 1.15;
+      font-size: clamp(20px, 2.2vw, 28px);
+      color: var(--text); line-height: 1.2;
     }
     .project-meta {
-      font-size: 12px; color: var(--text-light);
-      letter-spacing: 1.5px; text-transform: uppercase; font-weight: 700;
+      font-size: 11px; color: var(--text-light);
+      letter-spacing: 1.8px; text-transform: uppercase; font-weight: 700;
     }
     .project-see-all {
       color: var(--teal-dark); text-decoration: none;
@@ -301,6 +301,35 @@
     }
     .project-mosaic .project-photo:hover img { transform: scale(1.04); }
     .project-mosaic .feature { grid-column: 1; grid-row: 1 / 4; }
+
+    /* "Browse the full gallery →" CTA below the project blocks. Discoverable
+       path to gallery.html for users scrolling the homepage; the nav also
+       points "Our Work" at gallery.html. */
+    .gallery-section-cta {
+      text-align: center;
+      margin-top: 64px;
+      padding-top: 48px;
+      border-top: 1px solid rgba(0,0,0,.08);
+    }
+    .gallery-section-cta-btn {
+      display: inline-block;
+      padding: 14px 36px;
+      background: transparent;
+      color: var(--teal-deep);
+      border: 2px solid var(--teal-dark);
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: .3px;
+      transition: background .2s, color .2s, transform .2s, box-shadow .2s;
+    }
+    .gallery-section-cta-btn:hover {
+      background: var(--teal-dark);
+      color: var(--neon);
+      transform: translateY(-1px);
+      box-shadow: 0 8px 24px rgba(14,127,146,.25);
+    }
 
     /* --- TESTIMONIALS (currently hidden — see TODO below) --- */
     .testimonials-section { background: var(--teal-deep); color: #fff; }
@@ -470,6 +499,9 @@
       .project-header { margin-bottom: 14px; align-items: flex-start; }
       .project-block { margin-top: 44px; }
 
+      .gallery-section-cta { margin-top: 48px; padding-top: 36px; }
+      .gallery-section-cta-btn { padding: 12px 28px; font-size: 14px; }
+
       .testimonial-cards { grid-template-columns: 1fr; gap: 16px; }
       .testimonial-card { padding: 24px; }
 
@@ -496,7 +528,7 @@
     <div class="nav-links">
       <a href="#whats-a-treenet">What's a Treenet?</a>
       <!-- TODO post-launch: re-enable <a href="#about">About</a> once the About Tim section is unhidden -->
-      <a href="#gallery">Our Work</a>
+      <a href="gallery.html">Our Work</a>
       <a href="#getanet">Get a Net</a>
     </div>
     <div class="nav-right">
@@ -508,7 +540,7 @@
   <div class="mobile-menu" id="mobileMenu">
     <a href="#whats-a-treenet">What's a Treenet?</a>
     <!-- TODO post-launch: re-enable <a href="#about">About</a> -->
-    <a href="#gallery">Our Work</a>
+    <a href="gallery.html">Our Work</a>
     <a href="#getanet">Get a Net</a>
     <a href="tel:+15125918835">(512) 591-8835</a>
     <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a>
@@ -704,6 +736,10 @@
       </div>
     </div>
     <!-- AUTO-PROJECT-END:mariposa-montessori-nets -->
+
+    <div class="gallery-section-cta">
+      <a class="gallery-section-cta-btn" href="gallery.html">Browse the full gallery &rarr;</a>
+    </div>
 
   </div>
 </section>

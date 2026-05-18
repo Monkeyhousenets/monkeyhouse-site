@@ -69,32 +69,37 @@
 
 .lb-caption {
   position: absolute;
-  bottom: 24px; left: 50%;
+  bottom: 20px; left: 50%;
   transform: translateX(-50%);
   z-index: 2;
-  display: flex; gap: 18px; align-items: center;
-  padding: 12px 22px;
-  background: rgba(0,0,0,.45);
+  display: flex; gap: 12px; align-items: center;
+  padding: 8px 18px;
+  background: rgba(0,0,0,.5);
   backdrop-filter: blur(8px);
   border-radius: 100px;
   color: #fff;
-  font-size: 14px; font-weight: 600;
+  font-size: 13px; font-weight: 600;
   max-width: 90vw;
   text-align: center;
-}
-.lb-counter { opacity: .65; font-variant-numeric: tabular-nums; }
-.lb-title { font-weight: 700; }
-.lb-fullgallery {
-  color: #d7ff3a;
-  text-decoration: none;
-  font-weight: 800;
   white-space: nowrap;
-  border-left: 1px solid rgba(255,255,255,.25);
-  padding-left: 18px;
 }
-.lb-fullgallery:hover { text-decoration: underline; }
+.lb-counter { opacity: .7; font-variant-numeric: tabular-nums; }
+/* Project title is contextually redundant — the viewer just tapped into the
+   lightbox from the project's own block. Keep the element in the DOM (the
+   JS still sets it) but visually drop it from the caption. */
+.lb-title { display: none; }
+.lb-fullgallery {
+  color: rgba(255,255,255,.92);
+  text-decoration: none;
+  font-weight: 600;
+  border-left: 1px solid rgba(255,255,255,.25);
+  padding-left: 12px;
+}
+.lb-fullgallery:hover { color: #fff; }
 .lb-fullgallery.is-hidden { display: none; }
-.lb-fullgallery.is-hidden + * { display: none; }
+/* When the gallery link is hidden, also hide the separator border on the
+   counter side so we don't get a stray vertical line. */
+.lb-caption:has(.lb-fullgallery.is-hidden) .lb-counter { padding-right: 0; }
 
 @media (max-width: 640px) {
   .lb-close { top: 14px; right: 14px; width: 40px; height: 40px; }
@@ -106,16 +111,12 @@
   .lb-next { right: 10px; }
   .lb-caption {
     bottom: 14px;
-    flex-direction: column; gap: 6px;
-    padding: 10px 18px;
-    font-size: 13px;
+    padding: 6px 14px;
+    font-size: 12px;
+    gap: 10px;
   }
-  .lb-fullgallery {
-    border-left: 0; padding-left: 0;
-    padding-top: 6px;
-    border-top: 1px solid rgba(255,255,255,.25);
-  }
-  .lb-image { max-height: 70vh; }
+  .lb-fullgallery { padding-left: 10px; }
+  .lb-image { max-height: 72vh; }
 }
 
 /* Prevent body scroll while lightbox is open */
