@@ -49,9 +49,9 @@
     .privacy a { color: var(--teal-dark); font-weight: 700; }
     .privacy a:hover { text-decoration: underline; }
   </style>
-  <!-- Meta Pixel — replace REPLACE_WITH_PIXEL_ID with the real ID from Events Manager, then this activates -->
+  <!-- Meta Pixel — active; set MH_PIXEL_ID back to 'REPLACE_WITH_PIXEL_ID' to disable -->
   <script>
-    window.MH_PIXEL_ID = 'REPLACE_WITH_PIXEL_ID';
+    window.MH_PIXEL_ID = '1337002154614135';
     if (window.MH_PIXEL_ID !== 'REPLACE_WITH_PIXEL_ID') {
       !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
       n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
@@ -101,7 +101,7 @@
 
   <h2>What we collect</h2>
   <p>When you fill out a form on our site, we collect what you share with us: your name, email, phone number, where you're located, and details about the project you have in mind.</p>
-  <p>We also use standard analytics and advertising cookies, including the Meta (Facebook) Pixel. The pixel notes which pages you visit and when you complete a form, which helps us understand whether our ads are reaching the right people.</p>
+  <p>We also use standard analytics and advertising cookies, including the Meta (Facebook) Pixel. The pixel notes which pages you visit and when you complete a form, and it shares a scrambled (hashed) version of details like your email or phone number with Meta so we can tell whether our ads are reaching the right people. The scrambling is one-way — Meta can match it against its own records, but can't read the original.</p>
 
   <h2>How we use it</h2>
   <p>We use your information to respond to your inquiry, plan a design visit, and figure out whether our ads are actually working. That's it. We don't sell your information. Ever.</p>
