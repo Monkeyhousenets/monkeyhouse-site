@@ -191,6 +191,19 @@
       [id] { scroll-margin-top: 120px; }
     }
   </style>
+  <!-- Meta Pixel — replace REPLACE_WITH_PIXEL_ID with the real ID from Events Manager, then this activates -->
+  <script>
+    window.MH_PIXEL_ID = 'REPLACE_WITH_PIXEL_ID';
+    if (window.MH_PIXEL_ID !== 'REPLACE_WITH_PIXEL_ID') {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.MH_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+  </script>
 </head>
 <body>
 
@@ -337,7 +350,7 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-  &copy; <span id="footer-year">2026</span> Monkeyhouse LLC &middot; Austin, TX &middot; <a href="index.html">Home</a>
+  &copy; <span id="footer-year">2026</span> Monkeyhouse LLC &middot; Austin, TX &middot; <a href="index.html">Home</a> &middot; <a href="privacy.html">Privacy</a>
 </footer>
 
 <script>

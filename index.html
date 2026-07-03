@@ -448,6 +448,19 @@
   ]
 }
   </script>
+  <!-- Meta Pixel — replace REPLACE_WITH_PIXEL_ID with the real ID from Events Manager, then this activates -->
+  <script>
+    window.MH_PIXEL_ID = 'REPLACE_WITH_PIXEL_ID';
+    if (window.MH_PIXEL_ID !== 'REPLACE_WITH_PIXEL_ID') {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.MH_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+  </script>
 </head>
 <body>
 
@@ -752,7 +765,7 @@
     <h2 class="section-title">Let's build something amazing in your trees</h2>
     <p class="section-body" style="margin: 0 auto 8px;">Tell us about your space and we'll start dreaming something up for you.</p>
     <div class="form-container">
-      <form name="get-a-net" method="POST" data-netlify="true" data-netlify-honeypot="bot-field">
+      <form name="get-a-net" method="POST" action="/thanks.html?form=get-a-net" data-netlify="true" data-netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="get-a-net" />
         <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
         <label>Full name <input name="full_name" type="text" required /></label>
@@ -783,8 +796,8 @@
     <div class="contact-grid">
       <div class="contact-info">
         <h3>Get in Touch</h3>
-        <a href="tel:+15125918835">(512) 591-8835</a>
-        <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a>
+        <a href="tel:+15125918835" data-contact-link>(512) 591-8835</a>
+        <a href="mailto:info@monkeyhousenets.com" data-contact-link>info@monkeyhousenets.com</a>
         <p class="contact-area">Austin, TX &amp; Hill Country area</p>
         <div class="contact-socials">
           <a href="https://www.instagram.com/monkeyhousenets" target="_blank" rel="noopener" aria-label="Instagram">
@@ -796,7 +809,7 @@
         </div>
       </div>
       <div class="contact-form">
-        <form name="contact" method="POST" data-netlify="true" data-netlify-honeypot="bot-field-contact">
+        <form name="contact" method="POST" action="/thanks.html?form=contact" data-netlify="true" data-netlify-honeypot="bot-field-contact">
           <input type="hidden" name="form-name" value="contact" />
           <p hidden><label>Don't fill this out: <input name="bot-field-contact" /></label></p>
           <label>Full Name <input name="name" type="text" required /></label>
@@ -811,7 +824,7 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-  &copy; <span id="footer-year">2026</span> Monkeyhouse LLC &middot; Austin, TX
+  &copy; <span id="footer-year">2026</span> Monkeyhouse LLC &middot; Austin, TX &middot; <a href="privacy.html">Privacy</a>
 </footer>
 
 <script>
@@ -829,6 +842,9 @@
       menuBtn.setAttribute('aria-expanded', 'false');
       menuBtn.textContent = '☰';
     });
+  });
+  document.querySelectorAll('[data-contact-link]').forEach(link => {
+    link.addEventListener('click', () => { if (window.fbq) fbq('track', 'Contact'); });
   });
 </script>
 <script src="lightbox.js" defer></script>

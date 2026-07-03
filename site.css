@@ -108,7 +108,7 @@ body {
   background: var(--teal-deep); padding: 24px;
   text-align: center; color: rgba(255,255,255,.6); font-size: 13px;
 }
-.footer a { color: var(--neon); text-decoration: none; font-weight: 700; }
+.footer a { color: rgba(255,255,255,.8); text-decoration: none; font-weight: 700; }
 .footer a:hover { text-decoration: underline; }
 
 /* --- RESPONSIVE (shared chrome) --- */
