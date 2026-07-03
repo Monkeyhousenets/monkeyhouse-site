@@ -48,9 +48,13 @@
   const counterEl = lb.querySelector('.lb-counter');
   const titleEl = lb.querySelector('.lb-title');
   const galleryLinkEl = lb.querySelector('.lb-fullgallery');
+  const closeBtn = lb.querySelector('.lb-close');
 
   let currentSet = [];
   let currentIndex = 0;
+  // The trigger that opened the lightbox — focus returns here on close so
+  // keyboard/screen-reader users don't get dumped at the top of the page.
+  let openerEl = null;
 
   function srcFor(el) {
     return (
@@ -95,21 +99,37 @@
 
     prevBtn.disabled = currentSet.length <= 1;
     nextBtn.disabled = currentSet.length <= 1;
+
+    // Warm the browser cache for the neighbours so arrow/swipe nav doesn't
+    // stall on a fresh ~1MB fetch. Skip when there's nothing to move to.
+    if (currentSet.length > 1) {
+      const nextEl = currentSet[(currentIndex + 1) % currentSet.length];
+      const prevEl = currentSet[(currentIndex - 1 + currentSet.length) % currentSet.length];
+      new Image().src = srcFor(nextEl);
+      new Image().src = srcFor(prevEl);
+    }
   }
 
   function open(slug, startEl) {
     currentSet = groups.get(slug) || [];
     if (!currentSet.length) return;
+    openerEl = startEl;
     currentIndex = Math.max(0, currentSet.indexOf(startEl));
     render();
     document.body.classList.add('lb-locked');
     lb.classList.add('is-open');
+    // Move focus into the dialog so the focus trap has somewhere to start
+    // and Esc/Tab reach the keydown handler.
+    closeBtn.focus();
   }
 
   function close() {
     lb.classList.remove('is-open');
     document.body.classList.remove('lb-locked');
     imgEl.src = '';
+    // Return focus to the photo the user came from, if it's still around.
+    if (openerEl && document.contains(openerEl)) openerEl.focus();
+    openerEl = null;
   }
 
   function step(delta) {
@@ -139,6 +159,22 @@
     if (e.key === 'Escape') close();
     else if (e.key === 'ArrowLeft') step(-1);
     else if (e.key === 'ArrowRight') step(1);
+    else if (e.key === 'Tab') {
+      // Trap Tab inside the dialog so aria-modal="true" is honest — collect
+      // the currently-visible controls and wrap focus at the ends. The
+      // gallery link drops out of the cycle when it's hidden.
+      const focusables = [closeBtn, prevBtn, nextBtn].filter((b) => !b.disabled);
+      if (!galleryLinkEl.classList.contains('is-hidden')) focusables.push(galleryLinkEl);
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    }
   });
 
   // Touch swipe.

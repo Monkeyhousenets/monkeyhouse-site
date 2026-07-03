@@ -6,81 +6,30 @@
   <title>Monkeyhouse Treenets — Custom Handwoven Treenets in Austin, TX</title>
   <meta name="description" content="Custom handwoven treenets in Austin, TX. Play, lounge, and explore in the trees." />
   <link rel="canonical" href="https://www.monkeyhousenets.com/" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preload" as="image" href="hero.jpg" fetchpriority="high" />
+  <meta property="og:site_name" content="Monkeyhouse Treenets" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://www.monkeyhousenets.com/" />
+  <meta property="og:title" content="Monkeyhouse Treenets — Custom Handwoven Treenets in Austin, TX" />
+  <meta property="og:description" content="Custom handwoven treenets in Austin, TX. Play, lounge, and explore in the trees." />
+  <meta property="og:image" content="https://www.monkeyhousenets.com/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700;800&family=Libre+Baskerville:wght@700&family=Satisfy&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="site.css" />
   <link rel="stylesheet" href="lightbox.css" />
   <style>
     /* === MONKEYHOUSE — based on iteration-2-a ===
        Editorial foundation, intro band, trust strip, linear How It Works.
        Videos: explainer = lGE6RxsOahc, fun = nJPGnibpANs */
 
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: 'Inter', ui-sans-serif, system-ui, sans-serif;
-      color: #1a2a32;
-      background: #faf9f5;
-      line-height: 1.6;
-    }
-
-    :root {
-      --teal: #3a9fbf;
-      --teal-dark: #0e7f92;
-      --teal-deep: #0a5e6e;
-      --neon: #d7ff3a;
-      --cream: #faf9f5;
-      --warm-white: #f3f0e8;
-      --sand: #e4ddd0;
-      --text: #1a2a32;
-      --text-light: #5a6a72;
-      --nav-h: 80px;
-    }
     [id] {
       scroll-margin-top: 40px;
     }
-
-    /* --- NAV --- */
-    .nav {
-      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-      height: var(--nav-h);
-      overflow: visible;
-    }
-    .nav-bg {
-      position: absolute; top: 0; left: 0; right: 0;
-      height: var(--nav-h);
-      background: rgba(250,249,245,.75);
-      backdrop-filter: blur(10px);
-      border-bottom: 1px solid rgba(0,0,0,.06);
-    }
-    .nav-inner {
-      max-width: 1140px; margin: 0 auto; padding: 0 24px;
-      display: flex; align-items: center; height: var(--nav-h); gap: 32px;
-      position: relative; z-index: 1;
-    }
-    .nav-logo-link {
-      text-decoration: none;
-      display: flex; align-items: flex-end;
-    }
-    .nav-logo {
-      height: 100px; width: auto;
-      display: block;
-      margin-bottom: -55px;
-    }
-    .nav-links { display: flex; gap: 28px; flex: 1; }
-    .nav-links a {
-      text-decoration: none; color: var(--teal-dark);
-      font-weight: 700; font-size: 13px; letter-spacing: .5px; text-transform: uppercase;
-    }
-    .nav-links a:hover { color: var(--teal-deep); }
-    .nav-right { display: flex; align-items: center; gap: 16px; }
-    .nav-phone { font-weight: 700; font-size: 14px; color: var(--text); }
-    .nav-cta {
-      background: var(--teal-dark); color: var(--neon);
-      padding: 10px 22px; border-radius: 8px; text-decoration: none;
-      font-weight: 800; font-size: 13px; letter-spacing: .3px;
-      transition: transform .2s, box-shadow .2s;
-    }
-    .nav-cta:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(14,127,146,.3); }
 
     /* --- HERO --- */
     .hero {
@@ -409,44 +358,8 @@
     .contact-form input:focus,
     .contact-form textarea:focus { outline: none; border-color: var(--teal); }
 
-    /* --- FOOTER --- */
-    .footer {
-      background: var(--teal-deep); padding: 24px;
-      text-align: center; color: rgba(255,255,255,.6); font-size: 13px;
-    }
-
-    /* --- MOBILE MENU --- */
-    .menu-btn {
-      display: none; border: 0;
-      background: rgba(0,0,0,.06); border-radius: 8px;
-      width: 44px; height: 38px; font-size: 20px;
-      cursor: pointer; color: var(--text);
-    }
-    .mobile-menu {
-      display: none; flex-direction: column;
-      position: absolute; top: var(--nav-h); left: 0; right: 0;
-      background: rgba(250,249,245,.95);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid rgba(0,0,0,.08);
-      padding: 16px 24px 20px; gap: 14px;
-      z-index: 100;
-    }
-    .mobile-menu.open { display: flex; }
-    .mobile-menu a {
-      text-decoration: none; color: var(--teal-dark);
-      font-weight: 700; font-size: 15px;
-      padding: 8px 0; border-bottom: 1px solid rgba(0,0,0,.06);
-    }
-    .mobile-menu a:last-child { border-bottom: none; }
-
-    /* --- RESPONSIVE --- */
+    /* --- RESPONSIVE (page-specific; shared nav/menu/footer rules live in site.css) --- */
     @media (max-width: 768px) {
-      .nav-links, .nav-phone { display: none; }
-      .menu-btn { display: inline-block; }
-      .nav-logo { height: 60px; margin-bottom: -30px; }
-      .nav-inner { gap: 12px; }
-      .nav-cta { padding: 8px 16px; font-size: 12px; }
-
       .hero { min-height: 60vh; padding: 0 20px 40px; background-position: center bottom; }
       .hero h1 { font-size: clamp(32px, 8vw, 48px); }
       .hero p { font-size: 16px; }
@@ -513,10 +426,28 @@
       .contact-grid { grid-template-columns: 1fr; gap: 32px; }
       .contact-info { text-align: center; }
       .contact-socials { justify-content: center; }
-
-      .footer { padding: 20px 16px; }
     }
   </style>
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "Monkeyhouse LLC",
+  "alternateName": "Monkeyhouse Treenets",
+  "description": "Custom handwoven treenet installations — giant rope play structures suspended between trees, designed and built on-site in Austin, TX.",
+  "url": "https://www.monkeyhousenets.com/",
+  "telephone": "+1-512-591-8835",
+  "email": "info@monkeyhousenets.com",
+  "image": "https://www.monkeyhousenets.com/og-image.jpg",
+  "logo": "https://www.monkeyhousenets.com/monkeyhouse-logo-transparent.png",
+  "address": { "@type": "PostalAddress", "addressLocality": "Austin", "addressRegion": "TX", "addressCountry": "US" },
+  "areaServed": "Austin, TX and the Texas Hill Country",
+  "sameAs": [
+    "https://www.instagram.com/monkeyhousenets",
+    "https://www.facebook.com/profile.php?id=61556323751576"
+  ]
+}
+  </script>
 </head>
 <body>
 
@@ -716,22 +647,54 @@
       <div class="project-header">
         <div class="project-header-left">
           <h3 class="project-title">Mariposa Montessori Nets</h3>
-          <div class="project-meta">Austin, TX · 10 photos</div>
+          <div class="project-meta">Austin, TX &middot; 10 photos</div>
         </div>
         <a class="project-see-all" href="gallery.html#mariposa-montessori-nets">See all photos &rarr;</a>
       </div>
       <div class="project-mosaic">
-        <a class="project-photo feature" href="gallery.html#mariposa-montessori-nets" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04040.jpg" data-gallery-href="gallery.html#mariposa-montessori-nets">
-          <img src="gallery/mariposa-montessori-nets/dsc04040.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        <a class="project-photo feature"
+           href="gallery.html#mariposa-montessori-nets"
+           data-lightbox="mariposa-montessori-nets"
+           data-src="gallery/mariposa-montessori-nets/dsc04040.jpg"
+           data-gallery-href="gallery.html#mariposa-montessori-nets">
+          <img src="gallery/mariposa-montessori-nets/thumbs/dsc04040.jpg"
+               srcset="gallery/mariposa-montessori-nets/thumbs/dsc04040.jpg 450w, gallery/mariposa-montessori-nets/dsc04040.jpg 1350w"
+               sizes="(max-width: 768px) 100vw, 740px"
+               width="1350" height="2400"
+               alt="Mariposa Montessori Nets" loading="lazy" />
         </a>
-        <a class="project-photo" href="gallery.html#mariposa-montessori-nets" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04057.jpg" data-gallery-href="gallery.html#mariposa-montessori-nets">
-          <img src="gallery/mariposa-montessori-nets/dsc04057.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        <a class="project-photo"
+           href="gallery.html#mariposa-montessori-nets"
+           data-lightbox="mariposa-montessori-nets"
+           data-src="gallery/mariposa-montessori-nets/dsc04057.jpg"
+           data-gallery-href="gallery.html#mariposa-montessori-nets">
+          <img src="gallery/mariposa-montessori-nets/thumbs/dsc04057.jpg"
+               srcset="gallery/mariposa-montessori-nets/thumbs/dsc04057.jpg 450w, gallery/mariposa-montessori-nets/dsc04057.jpg 1350w"
+               sizes="(max-width: 768px) 50vw, 365px"
+               width="1350" height="2400"
+               alt="Mariposa Montessori Nets" loading="lazy" />
         </a>
-        <a class="project-photo" href="gallery.html#mariposa-montessori-nets" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04062.jpg" data-gallery-href="gallery.html#mariposa-montessori-nets">
-          <img src="gallery/mariposa-montessori-nets/dsc04062.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        <a class="project-photo"
+           href="gallery.html#mariposa-montessori-nets"
+           data-lightbox="mariposa-montessori-nets"
+           data-src="gallery/mariposa-montessori-nets/dsc04062.jpg"
+           data-gallery-href="gallery.html#mariposa-montessori-nets">
+          <img src="gallery/mariposa-montessori-nets/thumbs/dsc04062.jpg"
+               srcset="gallery/mariposa-montessori-nets/thumbs/dsc04062.jpg 800w, gallery/mariposa-montessori-nets/dsc04062.jpg 2400w"
+               sizes="(max-width: 768px) 50vw, 365px"
+               width="2400" height="1350"
+               alt="Mariposa Montessori Nets" loading="lazy" />
         </a>
-        <a class="project-photo" href="gallery.html#mariposa-montessori-nets" data-lightbox="mariposa-montessori-nets" data-src="gallery/mariposa-montessori-nets/dsc04071.jpg" data-gallery-href="gallery.html#mariposa-montessori-nets">
-          <img src="gallery/mariposa-montessori-nets/dsc04071.jpg" alt="Mariposa Montessori Nets" loading="lazy" />
+        <a class="project-photo"
+           href="gallery.html#mariposa-montessori-nets"
+           data-lightbox="mariposa-montessori-nets"
+           data-src="gallery/mariposa-montessori-nets/dsc04071.jpg"
+           data-gallery-href="gallery.html#mariposa-montessori-nets">
+          <img src="gallery/mariposa-montessori-nets/thumbs/dsc04071.jpg"
+               srcset="gallery/mariposa-montessori-nets/thumbs/dsc04071.jpg 450w, gallery/mariposa-montessori-nets/dsc04071.jpg 1350w"
+               sizes="(max-width: 768px) 50vw, 365px"
+               width="1350" height="2400"
+               alt="Mariposa Montessori Nets" loading="lazy" />
         </a>
       </div>
     </div>
@@ -848,10 +811,11 @@
 
 <!-- FOOTER -->
 <footer class="footer">
-  &copy; <script>document.write(new Date().getFullYear())</script> Monkeyhouse LLC &middot; Austin, TX
+  &copy; <span id="footer-year">2026</span> Monkeyhouse LLC &middot; Austin, TX
 </footer>
 
 <script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
   const menuBtn = document.querySelector('.menu-btn');
   const mobileMenu = document.getElementById('mobileMenu');
   menuBtn?.addEventListener('click', () => {
