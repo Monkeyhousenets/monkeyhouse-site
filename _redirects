@@ -1,0 +1,7 @@
+# Vanity domain monkeyhousetreenets.com (bought 2026-09-27) is a Netlify domain
+# alias; send every visitor to the canonical www.monkeyhousenets.com with a
+# permanent 301 so Google sees one site, not a duplicate. Path is preserved.
+https://monkeyhousetreenets.com/*      https://www.monkeyhousenets.com/:splat  301!
+http://monkeyhousetreenets.com/*       https://www.monkeyhousenets.com/:splat  301!
+https://www.monkeyhousetreenets.com/*  https://www.monkeyhousenets.com/:splat  301!
+http://www.monkeyhousetreenets.com/*   https://www.monkeyhousenets.com/:splat  301!
