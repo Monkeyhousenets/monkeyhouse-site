@@ -326,6 +326,48 @@
     }
     .form-submit:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(14,127,146,.25); }
 
+    /* --- PHOTO STEP (Get a Net) ---
+       Three optional photos so Tim can judge the trees before driving out.
+       Photos are shrunk in the browser before sending (Netlify allows 8 MB per
+       submission and one file per input), so phone photos always fit. */
+    .photo-step {
+      text-align: left; margin: 4px 0 20px; padding: 18px;
+      border: 1px dashed var(--teal); border-radius: 12px; background: #fff;
+    }
+    .photo-step h3 { font-size: 16px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
+    .photo-step .photo-why { font-size: 14px; color: var(--text-light); line-height: 1.5; margin-bottom: 14px; }
+    .photo-slots { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+    .form-container .photo-slot {
+      position: relative; margin: 0; gap: 6px; cursor: pointer;
+      border: 1px solid #d0d5d8; border-radius: 10px; padding: 10px;
+      background: var(--cream); text-align: center; font-size: 13px; line-height: 1.3;
+      transition: border-color .2s, background .2s;
+    }
+    .photo-slot:hover, .photo-slot:focus-within { border-color: var(--teal); }
+    .photo-slot .slot-guide { width: 100%; height: auto; aspect-ratio: 4/3; object-fit: cover; display: block; border-radius: 6px; }
+    .photo-slot .slot-name { font-weight: 800; color: var(--text); }
+    .photo-slot .slot-tip { font-weight: 400; color: var(--text-light); font-size: 12px; }
+    .photo-slot input[type="file"] {
+      position: absolute; inset: 0; opacity: 0; cursor: pointer; padding: 0; border: 0; width: 100%; height: 100%;
+    }
+    .photo-slot .slot-thumb { display: none; width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 6px; }
+    .photo-slot.has-photo { border-color: var(--teal-dark); background: rgba(58,159,191,.10); }
+    .photo-slot.has-photo .slot-guide { display: none; }
+    .photo-slot.has-photo .slot-thumb { display: block; }
+    .photo-slot .slot-state { font-size: 12px; font-weight: 700; color: var(--teal-dark); min-height: 1.3em; }
+    .form-container .video-alt {
+      flex-direction: row; align-items: flex-start; gap: 10px; margin: 14px 0 0;
+      font-weight: 400; font-size: 14px; color: var(--text-light); line-height: 1.45;
+    }
+    .form-container .video-alt input { width: 20px; height: 20px; padding: 0; margin-top: 1px; flex: none; }
+    .video-alt b { color: var(--text); }
+    .form-status { font-size: 14px; color: var(--teal-deep); font-weight: 700; min-height: 1.4em; margin-top: 10px; }
+    @media (max-width: 520px) {
+      .photo-slots { grid-template-columns: 1fr; }
+      .form-container .photo-slot { display: grid; grid-template-columns: 96px 1fr; align-items: center; text-align: left; gap: 4px 12px; }
+      .photo-slot .slot-guide, .photo-slot .slot-thumb { grid-row: 1 / 4; }
+    }
+
     /* --- CONTACT --- */
     .contact-section { background: var(--warm-white); }
     .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 48px; margin-top: 40px; }
@@ -766,7 +808,7 @@
     <h2 class="section-title">Let's build something amazing in your trees</h2>
     <p class="section-body" style="margin: 0 auto 8px;">Tell us about your space and we'll start dreaming something up for you.</p>
     <div class="form-container">
-      <form name="get-a-net" method="POST" action="/thanks.html?form=get-a-net" data-netlify="true" data-netlify-honeypot="bot-field">
+      <form name="get-a-net" method="POST" action="/thanks.html?form=get-a-net" enctype="multipart/form-data" data-netlify="true" data-netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="get-a-net" />
         <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
         <label>Full name <input name="full_name" type="text" required /></label>
@@ -784,8 +826,45 @@
         <label>Tell us about the treenet you'd like us to build
           <textarea name="project_details" rows="4" placeholder="How many trees? Who would use it? What are you imagining?"></textarea>
         </label>
+        <!-- PHOTO STEP: optional, placed before "referral" so the CRM's form reader keeps
+             the referral answer clean (unknown fields land in the project details). -->
+        <div class="photo-step">
+          <h3>Add 3 photos of your trees <span style="font-weight:400;color:var(--text-light)">(optional)</span></h3>
+          <p class="photo-why">Photos let Tim see whether your trees will work before anyone drives out, so your design visit is about your net, not about checking the trees.</p>
+          <div class="photo-slots">
+          <label class="photo-slot" for="photo_wide">
+            <img class="slot-guide" src="photo-guide/photo-guide-1-area.webp" alt="Diagram: step back so all the trees fit in the photo" width="720" height="540" loading="lazy" />
+            <img class="slot-thumb" alt="" />
+            <span class="slot-name">1. The whole area</span>
+            <span class="slot-tip">Step back so all the trees fit</span>
+            <span class="slot-state" aria-live="polite"></span>
+            <input id="photo_wide" name="photo_wide" type="file" accept="image/*" />
+          </label>
+          <label class="photo-slot" for="photo_trunk">
+            <img class="slot-guide" src="photo-guide/photo-guide-2-trunk.webp" alt="Diagram: a trunk with a person and a basketball next to it for scale" width="720" height="540" loading="lazy" />
+            <img class="slot-thumb" alt="" />
+            <span class="slot-name">2. A main trunk</span>
+            <span class="slot-tip">With a person or something recognizable next to it, like a basketball</span>
+            <span class="slot-state" aria-live="polite"></span>
+            <input id="photo_trunk" name="photo_trunk" type="file" accept="image/*" />
+          </label>
+          <label class="photo-slot" for="photo_gap">
+            <img class="slot-guide" src="photo-guide/photo-guide-3-gap.webp" alt="Diagram: the open space between two trees" width="720" height="540" loading="lazy" />
+            <img class="slot-thumb" alt="" />
+            <span class="slot-name">3. The gap</span>
+            <span class="slot-tip">The open space between the trees</span>
+            <span class="slot-state" aria-live="polite"></span>
+            <input id="photo_gap" name="photo_gap" type="file" accept="image/*" />
+          </label>
+          </div>
+          <label class="video-alt" for="video_call">
+            <input id="video_call" name="video_call" type="checkbox" value="Yes, a 10-minute video call instead of photos" />
+            <span><b>No photos handy?</b> Tick this and Tim will send you a link for a 10-minute video call (works on any phone, no app needed) where you walk him around the yard.</span>
+          </label>
+        </div>
         <label>How did you hear about us? <input name="referral" type="text" placeholder="Instagram, word of mouth, saw a net, etc." /></label>
         <button class="form-submit" type="submit">Send My Request</button>
+        <p class="form-status" id="form-status" aria-live="polite"></p>
       </form>
     </div>
   </div>
@@ -847,6 +926,74 @@
   document.querySelectorAll('[data-contact-link]').forEach(link => {
     link.addEventListener('click', () => { if (window.fbq) fbq('track', 'Contact'); });
   });
+</script>
+<script>
+  // Photo step: show a thumbnail when a photo is picked, then shrink photos in the
+  // browser before sending. Netlify takes 8 MB per submission and phone photos are
+  // 3 to 6 MB each, so each one is resized to 1600 px on its long side (~300 KB).
+  (function () {
+    const form = document.querySelector('form[name="get-a-net"]');
+    if (!form || !window.FormData || !window.fetch) return;   // old browsers: plain post
+    const status = document.getElementById('form-status');
+    const MAX = 1600;
+
+    form.querySelectorAll('.photo-slot input[type="file"]').forEach(input => {
+      input.addEventListener('change', () => {
+        const slotEl = input.closest('.photo-slot');
+        const file = input.files && input.files[0];
+        const thumb = slotEl.querySelector('.slot-thumb');
+        const state = slotEl.querySelector('.slot-state');
+        if (!file) { slotEl.classList.remove('has-photo'); state.textContent = ''; return; }
+        thumb.src = URL.createObjectURL(file);
+        slotEl.classList.add('has-photo');
+        state.textContent = 'Added. Tap to change';
+      });
+    });
+
+    function shrink(file) {
+      return new Promise(resolve => {
+        if (!file.type.startsWith('image/')) return resolve(file);
+        const img = new Image();
+        img.onload = () => {
+          const scale = Math.min(1, MAX / Math.max(img.naturalWidth, img.naturalHeight));
+          const c = document.createElement('canvas');
+          c.width = Math.round(img.naturalWidth * scale);
+          c.height = Math.round(img.naturalHeight * scale);
+          c.getContext('2d').drawImage(img, 0, 0, c.width, c.height);
+          c.toBlob(b => resolve(b ? new File([b], file.name.replace(/\.[^.]+$/, '') + '.jpg', { type: 'image/jpeg' }) : file),
+                   'image/jpeg', 0.82);
+        };
+        img.onerror = () => resolve(file);   // e.g. HEIC the browser can't draw: send as-is
+        img.src = URL.createObjectURL(file);
+      });
+    }
+
+    form.addEventListener('submit', async e => {
+      e.preventDefault();
+      if (!form.reportValidity()) return;
+      const btn = form.querySelector('.form-submit');
+      btn.disabled = true;
+      const data = new FormData(form);
+      const picked = [];
+      for (const input of form.querySelectorAll('.photo-slot input[type="file"]')) {
+        const f = input.files && input.files[0];
+        data.delete(input.name);
+        if (f) { status.textContent = 'Preparing photos…'; data.append(input.name, await shrink(f)); picked.push(input.name); }
+      }
+      const thanks = form.dataset.thanks || '/thanks.html';
+      const next = thanks + '?form=get-a-net&photos=' + picked.length;
+      if (form.dataset.preview === 'true') { location.href = next; return; }   // local preview: nothing is sent
+      status.textContent = picked.length ? 'Sending your request and photos…' : 'Sending…';
+      try {
+        const res = await fetch('/', { method: 'POST', body: data });
+        if (!res.ok) throw new Error(res.status);
+        location.href = next;
+      } catch (err) {
+        btn.disabled = false;
+        status.textContent = "That didn't go through. Please try again, or text your photos to (512) 591-8835.";
+      }
+    });
+  })();
 </script>
 <script src="lightbox.js" defer></script>
 </body>

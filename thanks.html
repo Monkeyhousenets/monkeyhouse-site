@@ -64,6 +64,24 @@
       text-decoration: none;
     }
     .thanks-back:hover { text-decoration: underline; }
+
+    /* --- PHOTO NUDGE (shown only when the request came without photos) --- */
+    .photo-nudge {
+      max-width: 560px; margin: 8px auto 32px; padding: 20px;
+      border: 1px dashed var(--teal); border-radius: 12px; background: #fff; text-align: left;
+    }
+    .photo-nudge h2 { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--text); margin-bottom: 6px; }
+    .thanks .photo-nudge p { margin: 0 0 12px; font-size: 15px; max-width: none; }
+    .photo-nudge ol { margin: 0 0 14px; padding-left: 1.2em; display: grid; gap: 6px; font-size: 15px; color: var(--text); }
+    .photo-nudge .text-to { font-weight: 800; color: var(--teal-deep); font-size: 18px; user-select: all; }
+    .photo-nudge .text-btn {
+      display: none; align-items: center; justify-content: center; min-height: 52px; border-radius: 10px;
+      background: var(--teal-dark); color: var(--neon); text-decoration: none; font-weight: 800; font-size: 16px;
+    }
+    @media (max-width: 768px) {
+      .photo-nudge .text-btn { display: flex; }
+      .photo-nudge .text-to-line { display: none; }
+    }
   </style>
   <!-- Meta Pixel — active; set MH_PIXEL_ID back to 'REPLACE_WITH_PIXEL_ID' to disable -->
   <script>
@@ -111,6 +129,17 @@
   <div class="section-label">Request Received</div>
   <h1>Got it — we'll be in touch.</h1>
   <p>Tim reads every request personally and will reach out within a day or two. In the meantime, take a look around.</p>
+  <div class="photo-nudge" id="photo-nudge" hidden>
+    <h2>Want an answer faster?</h2>
+    <p>Text Tim 3 photos of your trees so he can see whether they'll work before anyone drives out:</p>
+    <ol>
+      <li><b>The whole area</b>, from about 30 feet back</li>
+      <li><b>A main trunk</b>, with a person or a basketball next to it</li>
+      <li><b>The gap</b> between the trees</li>
+    </ol>
+    <p class="text-to-line">Text them to <span class="text-to">(512) 591-8835</span></p>
+    <a class="text-btn" href="sms:+15125918835">Text photos to (512) 591-8835</a>
+  </div>
   <a class="thanks-btn" href="gallery.html">Browse our work &rarr;</a>
   <a class="thanks-back" href="index.html">Back to home</a>
 </section>
@@ -141,6 +170,16 @@
   if (window.fbq) {
     fbq('track', new URLSearchParams(location.search).get('form') === 'get-a-net' ? 'Lead' : 'Contact');
   }
+</script>
+<script>
+  // No photos with the request? Show the 3-photo guide (photos=0). Photos sent, or the
+  // contact form: keep the page as it was.
+  (function () {
+    const q = new URLSearchParams(location.search);
+    if (q.get('form') === 'get-a-net' && q.get('photos') === '0') {
+      document.getElementById('photo-nudge').hidden = false;
+    }
+  })();
 </script>
 </body>
 </html>
