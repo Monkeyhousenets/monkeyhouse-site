@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Page not found — Monkeyhouse Treenets</title>
+  <meta name="description" content="That page isn't here. Head back to Monkeyhouse Treenets." />
+  <meta name="robots" content="noindex" />
+  <link rel="icon" href="/favicon.ico" sizes="48x48" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/site.css" />
+  <style>
+    /* --- PAGE NOT FOUND ---
+       Netlify serves this file for any address that doesn't exist. Links are
+       absolute (/...) because the missing address can be at any depth. */
+    .notfound {
+      margin-top: var(--nav-h);
+      min-height: calc(100vh - var(--nav-h) - 120px);
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      text-align: center; padding: 64px 24px;
+    }
+    .notfound .section-label {
+      font-size: 12px; font-weight: 800; letter-spacing: 2px; text-transform: uppercase;
+      color: var(--teal-dark); margin-bottom: 12px;
+    }
+    .notfound h1 {
+      font-family: 'DM Serif Display', serif; font-size: clamp(36px, 5vw, 56px);
+      line-height: 1.15; color: var(--text); margin-bottom: 16px;
+    }
+    .notfound p { font-size: 17px; color: var(--text-light); line-height: 1.65; max-width: 520px; margin: 0 auto 32px; }
+    .notfound-btns { display: flex; gap: 14px; flex-wrap: wrap; justify-content: center; }
+    .notfound-btn {
+      display: inline-block; padding: 14px 36px; border-radius: 10px; text-decoration: none;
+      font-weight: 800; font-size: 15px; letter-spacing: .3px;
+      background: var(--neon); color: var(--teal-deep); transition: transform .2s, box-shadow .2s;
+    }
+    .notfound-btn.alt { background: transparent; border: 2px solid var(--teal-dark); padding: 12px 34px; }
+    .notfound-btn:hover { transform: translateY(-1px); box-shadow: 0 8px 24px rgba(14,127,146,.25); }
+  </style>
+  <!-- Meta Pixel — active; set MH_PIXEL_ID back to 'REPLACE_WITH_PIXEL_ID' to disable -->
+  <script>
+    window.MH_PIXEL_ID = '1337002154614135';
+    if (window.MH_PIXEL_ID !== 'REPLACE_WITH_PIXEL_ID') {
+      !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+      n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+      n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+      t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+      document,'script','https://connect.facebook.net/en_US/fbevents.js');
+      fbq('init', window.MH_PIXEL_ID);
+      fbq('track', 'PageView');
+    }
+  </script>
+</head>
+<body>
+
+<!-- NAV -->
+<nav class="nav">
+  <div class="nav-bg"></div>
+  <div class="nav-inner">
+    <a class="nav-logo-link" href="/"><img class="nav-logo" src="/monkeyhouse-logo-nav.png" alt="Monkeyhouse" width="404" height="200" /></a>
+    <div class="nav-links">
+      <a href="/#whats-a-treenet">What's a Treenet?</a>
+      <a href="/gallery.html">Our Work</a>
+    </div>
+    <div class="nav-right">
+      <a class="nav-phone" href="tel:+15125918835" data-contact-link>(512) 591-8835</a>
+      <a class="nav-cta" href="/#getanet">Get a Net</a>
+      <button class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="/#whats-a-treenet">What's a Treenet?</a>
+    <a href="/gallery.html">Our Work</a>
+    <a href="/#getanet">Get a Net</a>
+    <a href="tel:+15125918835">(512) 591-8835</a>
+    <a href="mailto:info@monkeyhousenets.com">info@monkeyhousenets.com</a>
+  </div>
+</nav>
+
+<!-- PAGE NOT FOUND -->
+<section class="notfound">
+  <div class="section-label">Page not found</div>
+  <h1>This branch doesn't hold anything.</h1>
+  <p>The page you were looking for has moved or never existed. The nets are this way.</p>
+  <div class="notfound-btns">
+    <a class="notfound-btn" href="/">Back to home</a>
+    <a class="notfound-btn alt" href="/gallery.html">See our work</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  &copy; <span id="footer-year">2026</span> Monkeyhouse LLC &middot; Austin, TX &middot; <a href="/">Home</a> &middot; <a href="/privacy.html">Privacy</a>
+</footer>
+
+<script>
+  document.getElementById('footer-year').textContent = new Date().getFullYear();
+  const menuBtn = document.querySelector('.menu-btn');
+  const mobileMenu = document.getElementById('mobileMenu');
+  menuBtn?.addEventListener('click', () => {
+    const open = mobileMenu.classList.toggle('open');
+    menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menuBtn.textContent = open ? '✕' : '☰';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+      menuBtn.focus();
+    }
+  });
+  mobileMenu?.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+    });
+  });
+</script>
+</body>
+</html>

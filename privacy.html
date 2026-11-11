@@ -69,13 +69,13 @@
 <nav class="nav">
   <div class="nav-bg"></div>
   <div class="nav-inner">
-    <a class="nav-logo-link" href="index.html"><img class="nav-logo" src="monkeyhouse-logo-transparent.png" alt="Monkeyhouse" /></a>
+    <a class="nav-logo-link" href="index.html"><img class="nav-logo" src="monkeyhouse-logo-nav.png" alt="Monkeyhouse" width="404" height="200" /></a>
     <div class="nav-links">
       <a href="index.html#whats-a-treenet">What's a Treenet?</a>
       <a href="gallery.html">Our Work</a>
     </div>
     <div class="nav-right">
-      <span class="nav-phone">(512) 591-8835</span>
+      <a class="nav-phone" href="tel:+15125918835" data-contact-link>(512) 591-8835</a>
       <a class="nav-cta" href="index.html#getanet">Get a Net</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     </div>
@@ -128,6 +128,14 @@
     const open = mobileMenu.classList.toggle('open');
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     menuBtn.textContent = open ? '✕' : '☰';
+  });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+      menuBtn.focus();
+    }
   });
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {

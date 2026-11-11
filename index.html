@@ -277,6 +277,8 @@
       letter-spacing: .3px;
       transition: background .2s, color .2s, transform .2s, box-shadow .2s;
     }
+    .gallery-section-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; }
+    .gallery-section-cta-btn.is-primary { background: var(--teal-dark); color: var(--neon); }
     .gallery-section-cta-btn:hover {
       background: var(--teal-dark);
       color: var(--neon);
@@ -322,6 +324,7 @@
     .form-container textarea::placeholder { color: #a0a8ae; }
     .form-container textarea { resize: vertical; }
     .form-container select { appearance: auto; }
+    .phone-req { font-weight: 400; color: var(--text-light); }
     .form-submit {
       width: 100%; padding: 16px; border: 0; border-radius: 10px;
       background: var(--teal-dark); color: var(--neon);
@@ -405,6 +408,7 @@
 
     /* --- RESPONSIVE (page-specific; shared nav/menu/footer rules live in site.css) --- */
     @media (max-width: 768px) {
+      .project-see-all { padding: 12px 0; }
       .hero { min-height: 60vh; padding: 0 20px 40px; background-position: center bottom; }
       .hero h1 { font-size: clamp(32px, 8vw, 48px); }
       .hero p { font-size: 16px; }
@@ -513,14 +517,14 @@
 <nav class="nav">
   <div class="nav-bg"></div>
   <div class="nav-inner">
-    <a class="nav-logo-link" href="#"><img class="nav-logo" src="monkeyhouse-logo-transparent.png" alt="Monkeyhouse" /></a>
+    <a class="nav-logo-link" href="#" aria-label="Monkeyhouse, back to top"><img class="nav-logo" src="monkeyhouse-logo-nav.png" alt="Monkeyhouse" width="404" height="200" /></a>
     <div class="nav-links">
       <a href="#whats-a-treenet">What's a Treenet?</a>
       <!-- TODO post-launch: re-enable <a href="#about">About</a> once the About Tim section is unhidden -->
       <a href="gallery.html">Our Work</a>
     </div>
     <div class="nav-right">
-      <span class="nav-phone">(512) 591-8835</span>
+      <a class="nav-phone" href="tel:+15125918835" data-contact-link>(512) 591-8835</a>
       <a class="nav-cta" href="#getanet">Get a Net</a>
       <button class="menu-btn" aria-label="Open menu" aria-expanded="false">&#9776;</button>
     </div>
@@ -592,7 +596,7 @@
     <div class="trust-item">
       <div class="trust-icon">&#128170;</div>
       <h4>As Strong as Your Trees</h4>
-      <p>UIAA-rated climbing materials</p>
+      <p>The rated rope and hardware climbers trust</p>
     </div>
     <div class="trust-item">
       <div class="trust-icon">&#127795;</div>
@@ -692,6 +696,13 @@
   </div>
 </section>
 
+<!-- MID-PAGE CTA: keeps the main button within reach between the hero and the form -->
+<div class="mid-cta">
+  <p>Want one in your trees?</p>
+  <a class="mid-cta-btn" href="#getanet">Get a Net</a>
+  <span class="mid-cta-note">Starts with a free design visit. No obligation.</span>
+</div>
+
 <!-- GALLERY (Option B: Asymmetric Mosaic) -->
 <section id="gallery" class="gallery-section">
   <div class="section-inner">
@@ -760,6 +771,7 @@
 
     <div class="gallery-section-cta">
       <a class="gallery-section-cta-btn" href="gallery.html">Browse the full gallery &rarr;</a>
+      <a class="gallery-section-cta-btn is-primary" href="#getanet">Get a Net</a>
     </div>
 
   </div>
@@ -813,9 +825,9 @@
       <form name="get-a-net" method="POST" action="/thanks.html?form=get-a-net" enctype="multipart/form-data" data-netlify="true" data-netlify-honeypot="bot-field">
         <input type="hidden" name="form-name" value="get-a-net" />
         <p hidden><label>Don't fill this out: <input name="bot-field" /></label></p>
-        <label>Full name <input name="full_name" type="text" required /></label>
-        <label>Email <input name="email" type="email" required placeholder="name@example.com" /></label>
-        <label>Phone <input name="phone" type="tel" placeholder="555-555-5555" /></label>
+        <label>Full name <input name="full_name" type="text" required autocomplete="name" /></label>
+        <label>Email <input name="email" type="email" required placeholder="name@example.com" autocomplete="email" /></label>
+        <label><span>Phone <span class="phone-req" id="phone-req" hidden>(needed so Tim can reach you that way)</span></span> <input name="phone" type="tel" placeholder="555-555-5555" autocomplete="tel" /></label>
         <label>How would you like to be contacted?
           <select name="contact_method">
             <option value="">Choose an option</option>
@@ -824,7 +836,7 @@
             <option>Text</option>
           </select>
         </label>
-        <label>Where are you located? <input name="location" type="text" placeholder="City, State" /></label>
+        <label>Where are you located? <input name="location" type="text" placeholder="City, State" autocomplete="address-level2" /></label>
         <label>Tell us about the treenet you'd like us to build
           <textarea name="project_details" rows="4" placeholder="How many trees? Who would use it? What are you imagining?"></textarea>
         </label>
@@ -864,7 +876,17 @@
             <span><b>No photos handy?</b> Tick this and Tim will send you a link for a 10-minute video call (works on any phone, no app needed) where you walk him around the yard.</span>
           </label>
         </div>
-        <label>How did you hear about us? <input name="referral" type="text" placeholder="Instagram, word of mouth, saw a net, etc." /></label>
+        <label>How did you hear about us?
+          <select name="referral">
+            <option value="">Choose an option</option>
+            <option>Google</option>
+            <option>Instagram</option>
+            <option>Facebook</option>
+            <option>Friend or neighbor</option>
+            <option>Saw a net in person</option>
+            <option>Other</option>
+          </select>
+        </label>
         <button class="form-submit" type="submit">Send My Request</button>
         <p class="form-status" id="form-status" aria-live="polite"></p>
       </form>
@@ -921,6 +943,14 @@
     menuBtn.setAttribute('aria-expanded', open ? 'true' : 'false');
     menuBtn.textContent = open ? '✕' : '☰';
   });
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && mobileMenu?.classList.contains('open')) {
+      mobileMenu.classList.remove('open');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.textContent = '☰';
+      menuBtn.focus();
+    }
+  });
   mobileMenu?.querySelectorAll('a').forEach(link => {
     link.addEventListener('click', () => {
       mobileMenu.classList.remove('open');
@@ -941,6 +971,18 @@
     if (!form || !window.FormData || !window.fetch) return;   // old browsers: plain post
     const status = document.getElementById('form-status');
     const MAX = 1600;
+
+    // A phone number is required only when the visitor asks for a text or a call.
+    const method = form.querySelector('[name="contact_method"]');
+    const phone = form.querySelector('[name="phone"]');
+    const phoneReq = document.getElementById('phone-req');
+    function syncPhone() {
+      const need = method.value === 'Text' || method.value === 'Phone call';
+      phone.required = need;
+      phoneReq.hidden = !need;
+    }
+    method.addEventListener('change', syncPhone);
+    syncPhone();
 
     form.querySelectorAll('.photo-slot input[type="file"]').forEach(input => {
       input.addEventListener('change', () => {
