@@ -128,7 +128,7 @@
 <section class="thanks">
   <div class="section-label">Request Received</div>
   <h1>Got it — we'll be in touch.</h1>
-  <p>Tim reads every request personally and will reach out within a day or two. In the meantime, take a look around.</p>
+  <p>Tim reads every request personally and usually replies the same day. In the meantime, take a look around.</p>
   <div class="photo-nudge" id="photo-nudge" hidden>
     <h2>Want an answer faster?</h2>
     <p>Text Tim 3 photos of your trees so he can see whether they'll work before anyone drives out:</p>
@@ -175,9 +175,15 @@
   });
 </script>
 <script>
-  if (window.fbq) {
-    fbq('track', new URLSearchParams(location.search).get('form') === 'get-a-net' ? 'Lead' : 'Contact');
-  }
+  // Count one Lead per sent form. After counting, the address gets counted=1,
+  // so a refresh or a revisit of this page is not counted again.
+  (function () {
+    const q = new URLSearchParams(location.search);
+    if (q.get('form') !== 'get-a-net' || q.get('counted')) return;
+    if (window.fbq) fbq('track', 'Lead');
+    q.set('counted', '1');
+    try { history.replaceState(null, '', location.pathname + '?' + q.toString()); } catch (e) {}
+  })();
 </script>
 <script>
   // No photos with the request? Show the 3-photo guide (photos=0). Photos sent, or the
