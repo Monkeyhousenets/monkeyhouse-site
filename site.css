@@ -132,6 +132,7 @@ body {
   .menu-btn { display: inline-block; }
   .nav-logo { height: 60px; margin-bottom: -30px; }
   .nav-inner { gap: 12px; }
+  .nav-right { margin-left: auto; }
   .nav-cta { padding: 13px 18px; font-size: 13px; }
   .menu-btn { height: 44px; }
   .footer { padding: 20px 16px; }

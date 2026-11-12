@@ -67,6 +67,12 @@
       margin: 14px 0 0; font-size: 15px; font-weight: 600;
       color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,.55);
     }
+    /* Phones: room around the badge, and no small line under the buttons (Tim, 2026-11-11) */
+    @media (max-width: 768px) {
+      .hero { padding-top: 30px; }
+      .hero-badge { margin-bottom: 30px; }
+      .hero .hero-note { display: none; }
+    }
     .btn-primary {
       display: inline-block;
       background: var(--neon); color: var(--teal-deep);
