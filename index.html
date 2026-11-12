@@ -484,7 +484,8 @@
       /* The headline is pinned to the photo, not the screen: it starts about 26% of the way down the hero
          on every phone height (Tim picked the spot in the tuner, 2026-11-11). The spacer shrinks
          when a short phone has no room, so the buttons never fall off the bottom. */
-      .hero-content { display: flex; flex-direction: column; padding: 0 0 12px; }
+      .hero-content { display: flex; flex-direction: column; padding: 0 0 20px; }
+      .hero-content > .hero-ctas { margin-top: auto; }  /* buttons stay at the bottom, by the teal band */
       .hero-content > .hero-pin { display: block; flex: 0 1 25%; }
       .hero-content > :not(.hero-pin) { flex: none; }
       .hero h1 { font-size: clamp(24px, 7.8vw, 48px); }
