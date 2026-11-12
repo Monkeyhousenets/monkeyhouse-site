@@ -687,7 +687,7 @@
   </div>
   </div>
   <div class="trust-band" style="--a:2.6vw;--b:1.4vw;--a2:0.4vw;--b2:4.2vw;--wl:26px;--wr:40px;--pos:center">
-    <img data-src="trust/custom.jpg" data-small="trust/custom-1000.jpg" alt="" decoding="async" />
+    <img data-src="trust/custom.jpg" data-small="trust/custom-1000.jpg" data-phone="trust/custom-phone.jpg" alt="" decoding="async" />
     <div class="trust-band-text"><h3>Completely Custom</h3><p>Your trees, your colors, your net.</p></div>
   </div>
 </section>
@@ -700,7 +700,10 @@
     if (!wrap) return;
     const load = () => wrap.querySelectorAll('img[data-src]').forEach(img => {
       const small = window.innerWidth * (window.devicePixelRatio || 1) <= 1100;
-      img.src = small ? img.dataset.small : img.dataset.src;
+      // A tall (portrait) screen gets the upright crop when there is one, so a
+      // landscape photo isn't stretched to fill a tall band and look grainy.
+      const tall = window.innerHeight > window.innerWidth;
+      img.src = (tall && img.dataset.phone) || (small ? img.dataset.small : img.dataset.src);
       img.removeAttribute('data-src');
     });
     if (!('IntersectionObserver' in window)) return load();
