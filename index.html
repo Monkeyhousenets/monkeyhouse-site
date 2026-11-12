@@ -68,15 +68,22 @@
       color: #fff; text-shadow: 0 2px 10px rgba(0,0,0,.55);
     }
     /* Phones: a leaner hero so the photo shows: no badge, two short lines, no small note (Tim, 2026-11-11) */
-    .hero .hero-sub-m { display: none; }
+    .hero .hero-sub-m, .hero-pin { display: none; }
     @media (max-width: 768px) {
       .hero-badge, .hero .hero-sub-d, .hero .hero-note { display: none; }
       .hero .hero-sub-m { display: block; margin-bottom: 22px; }
     }
+    /* Shorter phones: the headline rides up toward the sky, so tighten the stack and deepen its shadow */
+    @media (max-width: 768px) and (max-height: 700px) {
+      .first-screen .hero h1 { margin-bottom: 12px; text-shadow: 0 2px 14px rgba(0,0,0,.75), 0 0 40px rgba(0,0,0,.45); }
+      .first-screen .hero .hero-sub-m { margin-bottom: 16px; line-height: 1.45; }
+      .first-screen .hero-ctas { gap: 10px; }
+      .first-screen .btn-primary { padding: 13px 32px; }
+      .first-screen .btn-secondary { padding: 11px 28px; }
+    }
     /* Small or short phones: tighten so the first screen still fits */
     @media (max-width: 768px) and (max-height: 620px) {
-      .first-screen .hero { padding-top: 12px; padding-bottom: 14px; }
-      .first-screen .hero h1 { font-size: 30px; margin-bottom: 10px; }
+      .first-screen .hero h1 { font-size: min(30px, 7.8vw); margin-bottom: 10px; }
       .first-screen .hero .hero-sub-m { margin-bottom: 14px; }
       .first-screen .hero-ctas { gap: 8px; }
       .first-screen .intro-band { padding: 10px 20px; }
@@ -472,8 +479,15 @@
       /* Phones: the first screen is exactly the hero plus the "Out of the house" band,
          whatever the phone's height. svh = the visible height with the browser bars showing. */
       .first-screen { display: flex; flex-direction: column; min-height: 100vh; min-height: 100svh; padding-top: var(--nav-h); }
-      .hero { margin-top: 0; flex: 1 0 auto; min-height: 0; padding: 30px 20px 20px; background-position: center bottom; }
-      .hero h1 { font-size: clamp(32px, 8vw, 48px); }
+      .hero { margin-top: 0; flex: 1 0 auto; min-height: 0; padding: 10px 20px 0; background-position: center bottom;
+              align-items: stretch; }
+      /* The headline is pinned to the photo, not the screen: it starts 41% of the way down the hero,
+         which is just under the treeline on every phone height (Tim, 2026-11-11). The spacer shrinks
+         when a short phone has no room, so the buttons never fall off the bottom. */
+      .hero-content { display: flex; flex-direction: column; padding: 0 0 12px; }
+      .hero-content > .hero-pin { display: block; flex: 0 1 41%; }
+      .hero-content > :not(.hero-pin) { flex: none; }
+      .hero h1 { font-size: clamp(24px, 7.8vw, 48px); }
       .hero p { font-size: 16px; }
       .hero-ctas { flex-direction: column; gap: 12px; align-items: flex-start; }
       .btn-primary, .btn-secondary {
@@ -604,6 +618,7 @@
 <div class="first-screen">
 <section class="hero">
   <div class="hero-content">
+    <div class="hero-pin" aria-hidden="true"></div>
     <div class="hero-badge">Handwoven in Austin, TX</div>
     <h1>Giant rope playgrounds built in your trees</h1>
     <p class="hero-sub-d">Custom handwoven rope structures suspended between your trees — completely unique to your space, built to last, and an absolute blast for every age.</p>
