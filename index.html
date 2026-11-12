@@ -221,7 +221,31 @@
       font-size: clamp(16px, 2.2vw, 20px); font-weight: 600; margin-top: 12px;
       text-shadow: 0 2px 12px rgba(0,0,0,.55);
     }
-    @media (prefers-reduced-motion: reduce) { .trust-band img { position: absolute; } }
+    /* Desktop: the first three bands share one row (three tall windows),
+       then Custom gets its own band. Phones keep all four stacked.
+       Tim chose this 2026-11-11 to shorten the scroll on desktop. */
+    .trust-trio { display: contents; }
+    .trust-trio .trust-band:nth-child(1) { --i: 0; --lt: 0px; --lb: 0px; --rt: 6px; --rb: 30px; }
+    .trust-trio .trust-band:nth-child(2) { --i: 1; --lt: 8px; --lb: 14px; --rt: 22px; --rb: 8px; }
+    .trust-trio .trust-band:nth-child(3) { --i: 2; --lt: 24px; --lb: 10px; --rt: 0px; --rb: 0px; }
+    @media (min-width: 900px) {
+      .trust-trio {
+        display: grid; grid-template-columns: repeat(3, 1fr); height: calc(72vh + 2 * var(--z));
+        --T0: calc(0.6vw + 26px); --T1: calc(2.2vw + 26px); --B0: 1.2vw; --B1: 0.2vw;
+      }
+      .trust-trio .trust-band {
+        height: 100%; margin-top: 0;
+        clip-path: polygon(
+          var(--lt) calc(var(--T0) + (var(--T1) - var(--T0)) * var(--i) / 3),
+          calc(100% - var(--rt)) calc(var(--T0) + (var(--T1) - var(--T0)) * (var(--i) + 1) / 3),
+          calc(100% - var(--rb)) calc(100% - var(--z) + var(--B0) + (var(--B1) - var(--B0)) * (var(--i) + 1) / 3),
+          var(--lb) calc(100% - var(--z) + var(--B0) + (var(--B1) - var(--B0)) * var(--i) / 3));
+      }
+      .trust-trio .trust-band img { left: calc(var(--i) * 100% / 3); right: auto; width: calc(100% / 3 + 2px); }
+      .trust-trio .trust-band-text h3 { font-size: clamp(26px, 2.9vw, 40px); }
+      .trust-trio .trust-band-text p { font-size: clamp(15px, 1.3vw, 18px); }
+    }
+    @media (prefers-reduced-motion: reduce) { .trust-band img { position: absolute; } .trust-trio .trust-band img { left: 0; width: 100%; } }
 
     /* --- FUN VIDEO --- */
     .fun-video-section { background: var(--warm-white); text-align: center; }
@@ -611,6 +635,7 @@
 
 <!-- TRUST BANDS (photo bands the page slides over; see the CSS note) -->
 <section class="trust-bands" aria-label="Why Monkeyhouse">
+  <div class="trust-trio">
   <div class="trust-band" style="--a:0.6vw;--b:2.2vw;--a2:3.8vw;--b2:0.6vw;--wl:26px;--wr:26px;--pos:center">
     <img data-src="trust/strong.jpg" data-small="trust/strong-1000.jpg" alt="" decoding="async" />
     <div class="trust-band-text"><h3>As Strong as Your Trees</h3><p>The rated rope and hardware climbers trust with their lives.</p></div>
@@ -622,6 +647,7 @@
   <div class="trust-band" style="--a:0.9vw;--b:3.3vw;--a2:2.6vw;--b2:1.4vw;--wl:50px;--wr:28px;--pos:center">
     <img data-src="trust/woven.jpg" data-small="trust/woven-1000.jpg" alt="" decoding="async" />
     <div class="trust-band-text"><h3>Handwoven</h3><p>Every knot tied on-site by hand.</p></div>
+  </div>
   </div>
   <div class="trust-band" style="--a:2.6vw;--b:1.4vw;--a2:0.4vw;--b2:4.2vw;--wl:26px;--wr:40px;--pos:center">
     <img data-src="trust/custom.jpg" data-small="trust/custom-1000.jpg" alt="" decoding="async" />
