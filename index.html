@@ -187,20 +187,41 @@
     .how-step h3 { font-size: 17px; font-weight: 800; margin-bottom: 8px; color: var(--text); }
     .how-step p { font-size: 14px; color: var(--text-light); line-height: 1.55; }
 
-    /* --- TRUST STRIP --- */
-    .trust-strip { background: rgba(58,159,191,.18); padding: 56px 24px; }
-    .trust-icons {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px;
-      max-width: 1140px; margin: 0 auto; text-align: center;
+    /* --- TRUST BANDS ---
+       Four photo bands. Each photo is fixed to the screen and its band is a
+       window onto it, so the page appears to slide over the photos. The
+       cream breaks between bands are wedges, each a different shape: every
+       band is clipped to a four-sided polygon, and neighbouring bands overlap
+       by --z so the slanted edges meet. --a/--b are the left/right height of
+       a band's top break, --a2/--b2 of the break below it, --wl/--wr the
+       cream gap at the left/right end. Tim chose this look 2026-11-11. */
+    .trust-bands { --z: calc(5vw + 56px); background: var(--cream); padding: 0; }
+    .trust-band {
+      position: relative; color: #fff; overflow: hidden;
+      height: calc(72vh + 2 * var(--z)); margin-top: calc(-1 * var(--z));
+      display: flex; align-items: center; justify-content: center;
+      clip-path: polygon(0 calc(var(--a) + var(--wl)), 100% calc(var(--b) + var(--wr)),
+                         100% calc(100% - var(--z) + var(--b2)), 0 calc(100% - var(--z) + var(--a2)));
     }
-    .trust-icon {
-      width: 52px; height: 52px; border-radius: 50%;
-      background: var(--teal); color: #fff;
-      display: inline-flex; align-items: center; justify-content: center;
-      font-size: 24px; margin-bottom: 12px;
+    .trust-band:first-child { margin-top: 0; }
+    .trust-band img {
+      position: fixed; inset: 0; width: 100%; height: 100%;
+      object-fit: cover; object-position: var(--pos, center);
     }
-    .trust-item h4 { font-size: 15px; font-weight: 800; color: var(--text); margin-bottom: 4px; }
-    .trust-item p { font-size: 13px; color: var(--text-light); line-height: 1.4; }
+    .trust-band::after {
+      content: ""; position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(6,40,48,.25), rgba(6,40,48,.62));
+    }
+    .trust-band-text { position: relative; z-index: 1; text-align: center; padding: 0 24px; max-width: 760px; }
+    .trust-band-text h3 {
+      font-family: 'DM Serif Display', serif; font-weight: 400;
+      font-size: clamp(32px, 6vw, 60px); line-height: 1.1; text-shadow: 0 2px 18px rgba(0,0,0,.45);
+    }
+    .trust-band-text p {
+      font-size: clamp(16px, 2.2vw, 20px); font-weight: 600; margin-top: 12px;
+      text-shadow: 0 2px 12px rgba(0,0,0,.55);
+    }
+    @media (prefers-reduced-motion: reduce) { .trust-band img { position: absolute; } }
 
     /* --- FUN VIDEO --- */
     .fun-video-section { background: var(--warm-white); text-align: center; }
@@ -429,8 +450,6 @@
       .whats-grid { grid-template-columns: 1fr; gap: 28px; }
       .whats-quote { font-size: 18px; }
 
-      .trust-strip { padding: 40px 20px; }
-      .trust-icons { grid-template-columns: 1fr 1fr; gap: 24px; }
 
       .about-grid { grid-template-columns: 1fr; gap: 28px; }
       .about-photo { aspect-ratio: 4/3; max-height: 300px; }
@@ -590,31 +609,44 @@
   </div>
 </section>
 
-<!-- TRUST STRIP -->
-<section class="trust-strip">
-  <div class="trust-icons">
-    <div class="trust-item">
-      <div class="trust-icon">&#128170;</div>
-      <h4>As Strong as Your Trees</h4>
-      <p>The rated rope and hardware climbers trust with their lives</p>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">&#127795;</div>
-      <h4>Tree-Safe</h4>
-      <p>Spacers to keep trees healthy</p>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">&#9997;</div>
-      <h4>Handwoven</h4>
-      <p>Every knot tied on-site by hand</p>
-    </div>
-    <div class="trust-item">
-      <div class="trust-icon">&#127912;</div>
-      <h4>Completely Custom</h4>
-      <p>Your trees, your colors, your net</p>
-    </div>
+<!-- TRUST BANDS (photo bands the page slides over; see the CSS note) -->
+<section class="trust-bands" aria-label="Why Monkeyhouse">
+  <div class="trust-band" style="--a:0.6vw;--b:2.2vw;--a2:3.8vw;--b2:0.6vw;--wl:26px;--wr:26px;--pos:center">
+    <img data-src="trust/strong.jpg" data-small="trust/strong-1000.jpg" alt="" decoding="async" />
+    <div class="trust-band-text"><h3>As Strong as Your Trees</h3><p>The rated rope and hardware climbers trust with their lives.</p></div>
+  </div>
+  <div class="trust-band" style="--a:3.8vw;--b:0.6vw;--a2:0.9vw;--b2:3.3vw;--wl:22px;--wr:46px;--pos:center 35%">
+    <img data-src="trust/tree.jpg" data-small="trust/tree-1000.jpg" alt="" decoding="async" />
+    <div class="trust-band-text"><h3>Tree-Safe</h3><p>Wooden spacers keep the rope off the bark, so your trees stay healthy.</p></div>
+  </div>
+  <div class="trust-band" style="--a:0.9vw;--b:3.3vw;--a2:2.6vw;--b2:1.4vw;--wl:50px;--wr:28px;--pos:center">
+    <img data-src="trust/woven.jpg" data-small="trust/woven-1000.jpg" alt="" decoding="async" />
+    <div class="trust-band-text"><h3>Handwoven</h3><p>Every knot tied on-site by hand.</p></div>
+  </div>
+  <div class="trust-band" style="--a:2.6vw;--b:1.4vw;--a2:0.4vw;--b2:4.2vw;--wl:26px;--wr:40px;--pos:center">
+    <img data-src="trust/custom.jpg" data-small="trust/custom-1000.jpg" alt="" decoding="async" />
+    <div class="trust-band-text"><h3>Completely Custom</h3><p>Your trees, your colors, your net.</p></div>
   </div>
 </section>
+<script>
+  // Trust bands: the four photos load when the visitor gets within about two
+  // screens of them (the browser's own lazy loading can't see a fixed photo
+  // behind a clipped band). Narrow screens get the smaller file.
+  (function () {
+    const wrap = document.querySelector('.trust-bands');
+    if (!wrap) return;
+    const load = () => wrap.querySelectorAll('img[data-src]').forEach(img => {
+      const small = window.innerWidth * (window.devicePixelRatio || 1) <= 1100;
+      img.src = small ? img.dataset.small : img.dataset.src;
+      img.removeAttribute('data-src');
+    });
+    if (!('IntersectionObserver' in window)) return load();
+    const io = new IntersectionObserver(es => {
+      if (es.some(e => e.isIntersecting)) { load(); io.disconnect(); }
+    }, { rootMargin: '200% 0px' });
+    io.observe(wrap);
+  })();
+</script>
 
 <!-- ============================================================
      TODO (post-launch): ABOUT TIM
